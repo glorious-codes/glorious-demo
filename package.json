@@ -1,0 +1,54 @@
+{
+  "name": "gdemo",
+  "version": "0.1.0",
+  "description": "The easiest way to show your code in action",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "./node_modules/webpack/bin/webpack.js",
+    "test": "node ./babelrc --env=test && ./node_modules/jest/bin/jest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelcamargo/glorious-demo.git"
+  },
+  "keywords": [
+    "demo",
+    "code",
+    "snippet",
+    "animation",
+    "mac",
+    "editor",
+    "terminal"
+  ],
+  "author": "Rafael Camargo <hello@rafaelcamargo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rafaelcamargo/glorious-demo/issues"
+  },
+  "homepage": "https://github.com/rafaelcamargo/glorious-demo#readme",
+  "dependencies": {
+    "highlightjs": "^9.10.0",
+    "typed.js": "^2.0.6"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-loader": "^0.5.5",
+    "html-loader-jest": "^0.2.1",
+    "html-webpack-plugin": "^3.1.0",
+    "install": "^0.10.4",
+    "jest": "^23.3.0",
+    "lodash": "^4.17.5",
+    "style-loader": "^0.20.3",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^3.1.4",
+    "yargs": "^11.1.0"
+  }
+}
