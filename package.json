@@ -26,10 +26,6 @@
     "url": "https://github.com/rafaelcamargo/glorious-demo/issues"
   },
   "homepage": "https://github.com/rafaelcamargo/glorious-demo#readme",
-  "dependencies": {
-    "highlightjs": "^9.10.0",
-    "typed.js": "^2.0.6"
-  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
