@@ -1,0 +1,31 @@
+@require '_variables'
+
+border-radius($radius)
+  -webkit-border-radius $radius
+  -moz-border-radius    $radius
+  border-radius         $radius
+
+box-sizing($size)
+  -webkit-box-sizing $size
+  -moz-box-sizing    $size
+  box-sizing         $size
+
+clearfix()
+  zoom 1
+  &:after
+    content " "
+    display table
+    clear both
+
+transition($property, $time)
+  -webkit-transition  $property $time $animation-ease-default
+  -moz-transition     $property $time $animation-ease-default
+  -o-transition       $property $time $animation-ease-default
+  transition          $property $time $animation-ease-default
+
+transform($property)
+  -webkit-transform unquote($property)
+  -moz-transform unquote($property)
+  -ms-transform unquote($property)
+  -o-transform unquote($property)
+  transform unquote($property)

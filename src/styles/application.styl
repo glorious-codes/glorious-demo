@@ -1,0 +1,90 @@
+@import '_variables'
+@import '_mixins'
+
+$application-action-size = 8px
+$application-title-line-height = $font-size-xl
+$application-box-shadow-intensity = 12px 18px 48px 0
+$application-box-shadow-color = alpha($color-darkest, .6)
+
+.application
+  background-color $color-darkest
+  color alpha($color-lightest, .5)
+  box-shadow $application-box-shadow-intensity $application-box-shadow-color
+  overflow hidden
+  border-radius(6px)
+  transition(all, $animation-duration)
+
+.application-topbar
+  position relative
+  padding 3px 12px
+  clearfix()
+  box-sizing(border-box)
+
+.application-actions-container
+  position absolute
+  top 50%
+  transform('translateY(-50%)')
+
+.application-actions-container,
+.application-action
+  float left
+
+.application-action
+  width $application-action-size
+  height $application-action-size
+  border-radius(50%)
+  &.application-action-close
+    background-color $color-red
+  &.application-action-minimize
+    background-color $color-yellow
+  &.application-action-maximize
+    background-color $color-green
+  & + .application-action
+    margin-left 6px
+
+.application-title-container
+  padding-left 45px
+  font-size $font-size-xxxs
+  text-align center
+  line-height $font-size-lg
+  white-space nowrap
+
+.application-lines-wrapper
+  margin 0
+  padding 0
+  list-style-type none
+
+.application-line
+  position relative
+  padding 0 6px
+  min-height $font-size-xl
+  font-size $font-size-xs
+  line-height $font-size-xl
+  font-family monospace
+  clearfix()
+
+.application-line-number,
+.application-line-text
+  margin 0
+
+.application-line-number
+  position absolute
+  top 0
+  left 0
+  padding-left 6px
+  width 36px
+  opacity .5
+
+.application-line-text,
+.application-line-prompt-string
+  float left
+
+.application-line-prompt-string
+  margin-right 12px
+  color $color-blue
+
+.application-line-command
+  color $color-lightest
+
+.application-line-response
+  margin 0
