@@ -1,17 +1,9 @@
 import textService from '../../services/text/text';
 import { EditorLine } from '../editor-line/editor-line';
 import { EditorApplication } from './editor-application';
+import { EditorLineMock, editorLineInstanceMock } from '@mocks/editor-line-mock';
 
 jest.mock('../editor-line/editor-line');
-const editorLineInstanceMock = {
-  write: jest.fn((textLine, onComplete) => {
-    onComplete();
-  }),
-  element: '<div>Something</div>'
-};
-const EditorLineMock = jest.fn(() => {
-  return editorLineInstanceMock;
-});
 EditorLine.mockImplementation(EditorLineMock);
 
 describe('Editor Application Component', () => {
@@ -22,9 +14,7 @@ describe('Editor Application Component', () => {
 
   function instantiateEditorApplication(options){
     const container = document.createElement('div');
-    const application = new EditorApplication(container, options);
-    spyOn(application, 'addContent');
-    return application;
+    return new EditorApplication(container, options);
   }
 
   it('should build editor application wrapper on instantiate', () => {
@@ -47,6 +37,7 @@ describe('Editor Application Component', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1';
     const onComplete = jest.fn();
+    spyOn(application, 'addContent');
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write(codeSample, onComplete);
     expect(application.addContent).toHaveBeenCalledWith(editorLineInstanceMock.element);
@@ -56,6 +47,7 @@ describe('Editor Application Component', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1';
     const onComplete = jest.fn();
+    spyOn(application, 'addContent');
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write(codeSample, onComplete);
     expect(EditorLineMock).toHaveBeenCalledWith(1);
@@ -66,6 +58,7 @@ describe('Editor Application Component', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1\nLine 2\nLine 3';
     const onComplete = jest.fn();
+    spyOn(application, 'addContent');
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write(codeSample, onComplete);
     expect(EditorLineMock.mock.calls[0][0]).toEqual(1);
@@ -82,6 +75,7 @@ describe('Editor Application Component', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1';
     const onComplete = jest.fn();
+    spyOn(application, 'addContent');
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write(codeSample, onComplete);
     expect(onComplete).toHaveBeenCalled();
