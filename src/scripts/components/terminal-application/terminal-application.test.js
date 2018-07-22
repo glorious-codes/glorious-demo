@@ -1,32 +1,21 @@
-import textService from '../../services/text/text';
 import { TerminalApplication } from './terminal-application';
 import { TerminalCommandLine } from '../terminal-command-line/terminal-command-line';
 import { TerminalResponseLine } from '../terminal-response-line/terminal-response-line';
-
-function buildTerminalLineMock(method, action){
-  const lineInstanceMock = {};
-  lineInstanceMock[method] = jest.fn();
-  lineInstanceMock.element = '<div>Something</div>';
-  return lineInstanceMock;
-}
+import { TerminalCommandLineMock, terminalCommandLineInstanceMock } from '@mocks/terminal-command-line-mock';
+import { TerminalResponseLineMock, terminalResponseLineInstanceMock } from '@mocks/terminal-response-line-mock';
+import textService from '../../services/text/text';
 
 jest.mock('../terminal-command-line/terminal-command-line');
-const terminalCommandLineInstanceMock = buildTerminalLineMock('command');
-const TerminalCommandLineMock = jest.fn(() => terminalCommandLineInstanceMock);
 TerminalCommandLine.mockImplementation(TerminalCommandLineMock);
 
 jest.mock('../terminal-response-line/terminal-response-line');
-const terminalResponseLineInstanceMock = buildTerminalLineMock('setText');
-const TerminalResponseLineMock = jest.fn(() => terminalResponseLineInstanceMock);
 TerminalResponseLine.mockImplementation(TerminalResponseLineMock);
 
 describe('Terminal Application Component', () => {
 
   function instantiateTerminalApplication(options){
     const container = document.createElement('div');
-    const application = new TerminalApplication(container, options);
-    spyOn(application, 'addContent');
-    return application;
+    return new TerminalApplication(container, options);
   }
 
   beforeEach(() => {
@@ -70,6 +59,7 @@ describe('Terminal Application Component', () => {
     const application = instantiateTerminalApplication();
     const commandText = 'npm install';
     const onComplete = jest.fn();
+    spyOn(application, 'addContent');
     application.command(commandText, onComplete);
     expect(TerminalCommandLine).toHaveBeenCalledWith(application.promptString);
   });
@@ -78,6 +68,7 @@ describe('Terminal Application Component', () => {
     const application = instantiateTerminalApplication();
     const commandText = 'npm install';
     const onComplete = jest.fn();
+    spyOn(application, 'addContent');
     application.command(commandText, onComplete);
     expect(application.addContent).toHaveBeenCalledWith(terminalCommandLineInstanceMock.element);
   });
@@ -86,6 +77,7 @@ describe('Terminal Application Component', () => {
     const application = instantiateTerminalApplication();
     const commandText = 'npm install';
     const onComplete = jest.fn();
+    spyOn(application, 'addContent');
     application.command(commandText, onComplete);
     expect(terminalCommandLineInstanceMock.command).toHaveBeenCalledWith(commandText, onComplete);
   });
@@ -94,6 +86,7 @@ describe('Terminal Application Component', () => {
     const application = instantiateTerminalApplication();
     const response = 'Successfully installed!';
     const onComplete = jest.fn();
+    spyOn(application, 'addContent');
     application.respond(response, onComplete);
     expect(TerminalResponseLine).toHaveBeenCalled();
     expect(terminalResponseLineInstanceMock.setText).toHaveBeenCalledWith(response);
@@ -103,6 +96,7 @@ describe('Terminal Application Component', () => {
     const application = instantiateTerminalApplication();
     const response = 'Successfully installed!';
     const onComplete = jest.fn();
+    spyOn(application, 'addContent');
     application.respond(response, onComplete);
     expect(application.addContent).toHaveBeenCalledWith(terminalResponseLineInstanceMock.element);
   });
@@ -111,6 +105,7 @@ describe('Terminal Application Component', () => {
     const application = instantiateTerminalApplication();
     const response = 'Successfully installed!';
     const onComplete = jest.fn();
+    spyOn(application, 'addContent');
     application.respond(response, onComplete);
     expect(onComplete).toHaveBeenCalled();
   });
