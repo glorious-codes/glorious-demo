@@ -1,5 +1,7 @@
 import { Application } from './application';
 
+jest.useFakeTimers();
+
 describe('Application Component', () => {
 
   it('should instantiate application from application type', () => {
@@ -46,6 +48,30 @@ describe('Application Component', () => {
     content.innerText = 'Some content.';
     application.addContent(content);
     expect(application.element.querySelector('h1')).toEqual(content);
+  });
+
+  it('should maximize', () => {
+    const application = new Application('editor');
+    application.maximize();
+    expect(application.isMaximized).toEqual(true);
+  });
+
+  it('should set maximized look on maximize', () => {
+    const application = new Application('editor');
+    application.maximize();
+    expect(application.element.classList.contains('application-maximized')).toEqual(true);
+  });
+
+  it('should minimize', () => {
+    const application = new Application('editor');
+    application.minimize();
+    expect(application.isMaximized).toEqual(false);
+  });
+
+  it('should set minimized look on minimize', () => {
+    const application = new Application('editor');
+    application.minimize();
+    expect(application.element.classList.contains('application-maximized')).toEqual(false);
   });
 
 });

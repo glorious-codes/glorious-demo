@@ -29,6 +29,17 @@ export class Application {
     const container = getContentContainerElement(this.element);
     container.appendChild(content);
   }
+  minimize(){
+    this.setMaximized(false);
+    handleMaximizedCssClass(this.element, 'remove');
+  }
+  maximize(){
+    this.setMaximized(true);
+    handleMaximizedCssClass(this.element, 'add');
+  }
+  setMaximized(isMaximized){
+    this.isMaximized = isMaximized;
+  }
 }
 
 function buildElement(applicationType, windowTitle){
@@ -50,4 +61,8 @@ function getContentContainerElement(applicationElement){
 
 function getWindowTitleContainerElement(applicationElement){
   return applicationElement.querySelector('[data-title-container]');
+}
+
+function handleMaximizedCssClass(element, classListMethod){
+  element.classList[classListMethod]('application-maximized');
 }
