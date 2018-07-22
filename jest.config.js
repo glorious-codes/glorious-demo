@@ -15,10 +15,11 @@ module.exports = {
     }
   },
   "moduleNameMapper": {
-    '@styles\/(.*)$': `<rootDir>/${project.styles.source.root}$1`
+    '@styles\/(.*)$': `<rootDir>/${project.styles.source.root}$1`,
+    '@mocks\/(.*)$': `<rootDir>/${project.mocks.source.root}$1`
   },
   "transform": {
-    "^.+\\.(css|styl)$": "<rootDir>/src/mocks/stylesMock.js",
+    "^.+\\.(css|styl)$": "<rootDir>/src/mocks/styles-mock.js",
     "^.+\\.js$": "babel-jest",
     "^.+\\.html$": "html-loader-jest"
   }

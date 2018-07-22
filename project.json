@@ -23,5 +23,10 @@
         "dev": "gdemo.css"
       }
     }
+  },
+  "mocks": {
+    "source": {
+      "root": "src/mocks/"
+    }
   }
 }
