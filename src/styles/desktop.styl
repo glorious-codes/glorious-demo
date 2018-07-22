@@ -1,0 +1,24 @@
+@require '_variables'
+@require '_mixins'
+@require 'application'
+
+.desktop
+  position relative
+
+.desktop-application
+  position absolute
+  top 0
+  left 0
+  right 0
+
+.desktop-application
+  opacity 0
+  transform('scale(0)')
+  transition(all, $animation-duration)
+  .application
+    box-shadow 2px 3px 8px 0 $application-box-shadow-color
+  &.desktop-application-maximized
+    opacity 1
+    transform('scale(1)')
+    .application
+      box-shadow $application-box-shadow-intensity $application-box-shadow-color
