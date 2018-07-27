@@ -27,7 +27,27 @@ describe('Glorious Demo class', () => {
     expect(gDemo.steps).toEqual([]);
   });
 
+
   it('should play steps', () => {
+    const gDemo = instantiateGDemo();
+    gDemo
+      .openApp('editor')
+      .write('console.log("hello!");')
+      .openApp('terminal')
+      .command('node demo.js')
+      .respond('hello!')
+      .end();
+    expect(Player).toHaveBeenCalledWith(gDemo.container, [
+      {app: 'editor', options: {}, onCompleteDelay: undefined},
+      {app: 'editor', action: 'write', params: {codeSample: 'console.log("hello!");'}, onCompleteDelay: undefined},
+      {app: 'terminal', options: {}, onCompleteDelay: undefined},
+      {app: 'terminal', action: 'command', params: {command: 'node demo.js'}, onCompleteDelay: undefined},
+      {app: 'terminal', action: 'respond', params: {response: 'hello!'}, onCompleteDelay: undefined}
+    ]);
+    expect(playerInstanceMock.play).toHaveBeenCalled();
+  });
+
+  it('should play steps with options', () => {
     const gDemo = instantiateGDemo();
     gDemo
       .openApp('editor', {windowTitle: 'atom', onCompleteDelay: 200})
@@ -45,5 +65,4 @@ describe('Glorious Demo class', () => {
     ]);
     expect(playerInstanceMock.play).toHaveBeenCalled();
   });
-
 });

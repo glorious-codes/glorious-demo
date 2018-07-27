@@ -11,7 +11,7 @@ export class EditorApplication extends Application {
     this.lines = [];
     this.setWindowTitle(buildWindowTitle(options));
   }
-  write(codeSample, onComplete){
+  write({ codeSample }, onComplete){
     const textLines = textService.removeBlankFirstLine(codeSample);
     writeMultipleLines(this, textLines, onComplete);
   }

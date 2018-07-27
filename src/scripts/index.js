@@ -7,7 +7,7 @@ export default class {
     this.container = document.querySelector(selector);
     this.steps = [];
   }
-  openApp(app, options){
+  openApp(app, options = {}){
     this.steps.push({
       app,
       options,
@@ -15,30 +15,30 @@ export default class {
     });
     return this;
   }
-  write(codeSample, { onCompleteDelay }){
+  write(codeSample, options = {}){
     this.steps.push({
       app: 'editor',
       action: 'write',
       params: { codeSample },
-      onCompleteDelay
+      onCompleteDelay: options.onCompleteDelay
     });
     return this;
   }
-  command(command, { onCompleteDelay }){
+  command(command, options = {}){
     this.steps.push({
       app: 'terminal',
       action: 'command',
       params: { command },
-      onCompleteDelay
+      onCompleteDelay: options.onCompleteDelay
     });
     return this;
   }
-  respond(response, { onCompleteDelay }){
+  respond(response, options = {}){
     this.steps.push({
       app: 'terminal',
       action: 'respond',
       params: { response },
-      onCompleteDelay
+      onCompleteDelay: options.onCompleteDelay
     });
     return this;
   }

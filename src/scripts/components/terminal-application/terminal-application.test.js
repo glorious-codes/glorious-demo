@@ -57,29 +57,29 @@ describe('Terminal Application Component', () => {
 
   it('should build a command line with current defined prompt string on command', () => {
     const application = instantiateTerminalApplication();
-    const commandText = 'npm install';
+    const command = 'npm install';
     const onComplete = jest.fn();
     spyOn(application, 'addContent');
-    application.command(commandText, onComplete);
+    application.command({ command }, onComplete);
     expect(TerminalCommandLine).toHaveBeenCalledWith(application.promptString);
   });
 
   it('should add a command line to terminal application on command', () => {
     const application = instantiateTerminalApplication();
-    const commandText = 'npm install';
+    const command = 'npm install';
     const onComplete = jest.fn();
     spyOn(application, 'addContent');
-    application.command(commandText, onComplete);
+    application.command({ command }, onComplete);
     expect(application.addContent).toHaveBeenCalledWith(terminalCommandLineInstanceMock.element);
   });
 
   it('should write some command', () => {
     const application = instantiateTerminalApplication();
-    const commandText = 'npm install';
+    const command = 'npm install';
     const onComplete = jest.fn();
     spyOn(application, 'addContent');
-    application.command(commandText, onComplete);
-    expect(terminalCommandLineInstanceMock.command).toHaveBeenCalledWith(commandText, onComplete);
+    application.command({ command }, onComplete);
+    expect(terminalCommandLineInstanceMock.command).toHaveBeenCalledWith(command, onComplete);
   });
 
   it('should build a response line on respond', () => {
@@ -87,7 +87,7 @@ describe('Terminal Application Component', () => {
     const response = 'Successfully installed!';
     const onComplete = jest.fn();
     spyOn(application, 'addContent');
-    application.respond(response, onComplete);
+    application.respond({ response }, onComplete);
     expect(TerminalResponseLine).toHaveBeenCalled();
     expect(terminalResponseLineInstanceMock.setText).toHaveBeenCalledWith(response);
   });
@@ -97,7 +97,7 @@ describe('Terminal Application Component', () => {
     const response = 'Successfully installed!';
     const onComplete = jest.fn();
     spyOn(application, 'addContent');
-    application.respond(response, onComplete);
+    application.respond({ response }, onComplete);
     expect(application.addContent).toHaveBeenCalledWith(terminalResponseLineInstanceMock.element);
   });
 
@@ -106,7 +106,7 @@ describe('Terminal Application Component', () => {
     const response = 'Successfully installed!';
     const onComplete = jest.fn();
     spyOn(application, 'addContent');
-    application.respond(response, onComplete);
+    application.respond({ response }, onComplete);
     expect(onComplete).toHaveBeenCalled();
   });
 

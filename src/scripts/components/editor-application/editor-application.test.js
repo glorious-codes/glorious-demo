@@ -39,7 +39,7 @@ describe('Editor Application Component', () => {
     const onComplete = jest.fn();
     spyOn(application, 'addContent');
     stubRemoveBlankFirstLine(codeSample.split('\n'));
-    application.write(codeSample, onComplete);
+    application.write({ codeSample }, onComplete);
     expect(application.addContent).toHaveBeenCalledWith(editorLineInstanceMock.element);
   });
 
@@ -49,7 +49,7 @@ describe('Editor Application Component', () => {
     const onComplete = jest.fn();
     spyOn(application, 'addContent');
     stubRemoveBlankFirstLine(codeSample.split('\n'));
-    application.write(codeSample, onComplete);
+    application.write({ codeSample }, onComplete);
     expect(EditorLineMock).toHaveBeenCalledWith(1);
     expect(editorLineInstanceMock.write).toHaveBeenCalledWith(codeSample, jasmine.any(Function));
   });
@@ -60,7 +60,7 @@ describe('Editor Application Component', () => {
     const onComplete = jest.fn();
     spyOn(application, 'addContent');
     stubRemoveBlankFirstLine(codeSample.split('\n'));
-    application.write(codeSample, onComplete);
+    application.write({ codeSample }, onComplete);
     expect(EditorLineMock.mock.calls[0][0]).toEqual(1);
     expect(EditorLineMock.mock.calls[1][0]).toEqual(2);
     expect(EditorLineMock.mock.calls[2][0]).toEqual(3);
@@ -77,7 +77,7 @@ describe('Editor Application Component', () => {
     const onComplete = jest.fn();
     spyOn(application, 'addContent');
     stubRemoveBlankFirstLine(codeSample.split('\n'));
-    application.write(codeSample, onComplete);
+    application.write({ codeSample }, onComplete);
     expect(onComplete).toHaveBeenCalled();
   });
 

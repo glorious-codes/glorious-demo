@@ -15,12 +15,12 @@ export class TerminalApplication extends Application {
   setPromptString(string){
     this.promptString = string;
   }
-  command(text, onComplete){
+  command({ command }, onComplete){
     const line = new TerminalCommandLine(this.promptString);
     this.addContent(line.element);
-    line.command(text, onComplete);
+    line.command(command, onComplete);
   }
-  respond(response, onComplete){
+  respond({ response }, onComplete){
     const responseLines = textService.removeBlankFirstLine(response);
     for(let i = 0; i < responseLines.length; i++)
       this.addContent(buildResponseLineElement(responseLines[i]));
