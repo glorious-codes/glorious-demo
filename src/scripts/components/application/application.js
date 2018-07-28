@@ -18,8 +18,9 @@ export class Application {
   }
   setMinHeight(height){
     const applicationTopbarHeight = 26;
-    const container = getContentContainerElement(this.element);
-    container.style.minHeight = `${parseInt(height) - applicationTopbarHeight}px`;
+    const contentContainer = getContentContainerElement(this.element);
+    const contentContainerMinHeight = parseInt(height) - applicationTopbarHeight;
+    contentContainer.style.minHeight = `${contentContainerMinHeight}px`;
   }
   setWindowTitle(title){
     const titleContainerElement = getWindowTitleContainerElement(this.element);
