@@ -1,3 +1,4 @@
+import '@styles/terminal-response-line.styl';
 import { TerminalLine } from '../terminal-line/terminal-line';
 import domService from '../../services/dom/dom';
 import template from './terminal-response-line.html';

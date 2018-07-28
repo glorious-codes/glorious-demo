@@ -1,3 +1,4 @@
+import '@styles/terminal-command-line.styl';
 import { TerminalLine } from '../terminal-line/terminal-line';
 import typeService from '../../services/type/type';
 import domService from '../../services/dom/dom';

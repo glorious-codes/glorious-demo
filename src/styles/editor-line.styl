@@ -1,0 +1,22 @@
+@require 'application'
+
+$editor-line-number-width = 25px
+
+.editor-line
+  @extend .application-line
+
+.editor-line-number,
+.editor-line-text
+  margin 0
+
+.editor-line-number
+  position absolute
+  top 0
+  left 0
+  padding-left 6px
+  width $editor-line-number-width
+  text-align right
+  opacity .5
+
+.editor-line-text
+  padding-left $editor-line-number-width * 2

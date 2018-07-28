@@ -1,3 +1,4 @@
+import '@styles/editor-line.styl';
 import domService from '../../services/dom/dom';
 import typeService from '../../services/type/type';
 import template from './editor-line.html';
