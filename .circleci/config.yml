@@ -1,0 +1,29 @@
+# Javascript Node CircleCI 2.0 configuration file
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.2.1
+
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: Dependencies
+          command: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Test
+          command: npm run test -- --coverage --coverageReporters=lcov && ./node_modules/codecov/bin/codecov
