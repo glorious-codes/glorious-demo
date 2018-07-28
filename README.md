@@ -2,6 +2,9 @@
 
 > The easiest way to demonstrate your code in action.
 
+[![CircleCI](https://circleci.com/gh/rafaelcamargo/glorious-demo.svg?style=svg)](https://circleci.com/gh/rafaelcamargo/glorious-demo)
+[![codecov](https://codecov.io/gh/rafaelcamargo/glorious-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/rafaelcamargo/glorious-demo)
+
 ## Install
 
 ```
