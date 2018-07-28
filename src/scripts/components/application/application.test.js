@@ -28,11 +28,11 @@ describe('Application Component', () => {
     expect(contentContainer).toBeDefined();
   });
 
-  it('should allow minimum height option', () => {
+  it('should minimum height option subtract application top bar height', () => {
     const minHeight = '300px';
     const application = new Application('editor', { minHeight });
     const contentContainer = application.element.querySelector('[data-content-container]');
-    expect(contentContainer.style.minHeight).toEqual(minHeight);
+    expect(contentContainer.style.minHeight).toEqual('274px');
   });
 
   it('should allow window title option', () => {
@@ -58,8 +58,9 @@ describe('Application Component', () => {
 
   it('should set maximized look on maximize', () => {
     const application = new Application('editor');
+    const applicationElement = application.element.querySelector('[data-application]');
     application.maximize();
-    expect(application.element.classList.contains('application-maximized')).toEqual(true);
+    expect(applicationElement.classList.contains('application-maximized')).toEqual(true);
   });
 
   it('should minimize', () => {

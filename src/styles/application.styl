@@ -49,11 +49,6 @@ $application-box-shadow-color = alpha($color-darkest, .6)
   line-height $font-size-lg
   white-space nowrap
 
-.application-lines-wrapper
-  margin 0
-  padding 0
-  list-style-type none
-
 .application-line
   position relative
   padding 0 6px
@@ -62,29 +57,3 @@ $application-box-shadow-color = alpha($color-darkest, .6)
   line-height $font-size-xl
   font-family monospace
   clearfix()
-
-.application-line-number,
-.application-line-text
-  margin 0
-
-.application-line-number
-  position absolute
-  top 0
-  left 0
-  padding-left 6px
-  width 36px
-  opacity .5
-
-.application-line-text,
-.application-line-prompt-string
-  float left
-
-.application-line-prompt-string
-  margin-right 12px
-  color $color-blue
-
-.application-line-command
-  color $color-lightest
-
-.application-line-response
-  margin 0

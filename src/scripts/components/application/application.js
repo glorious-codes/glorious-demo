@@ -17,8 +17,9 @@ export class Application {
       this.setWindowTitle(options.windowTitle);
   }
   setMinHeight(height){
+    const applicationTopbarHeight = 26;
     const container = getContentContainerElement(this.element);
-    container.style.minHeight = height;
+    container.style.minHeight = `${parseInt(height) - applicationTopbarHeight}px`;
   }
   setWindowTitle(title){
     const titleContainerElement = getWindowTitleContainerElement(this.element);
@@ -64,5 +65,6 @@ function getWindowTitleContainerElement(applicationElement){
 }
 
 function handleMaximizedCssClass(element, classListMethod){
-  element.classList[classListMethod]('application-maximized');
+  const application = element.querySelector('[data-application]')
+  application.classList[classListMethod]('application-maximized');
 }
