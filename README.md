@@ -23,7 +23,7 @@ npm install @glorious/demo --save
 ```
 
 ``` javascript
-// Constructor receives any css selector that indicates
+// Constructor receives a selector that indicates
 // where to inject the demonstration in your page.
 const demo = new GDemo('#container');
 
