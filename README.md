@@ -44,7 +44,7 @@ Opens or maximizes an open application.
 */
 
 // Possible values are 'editor' or 'terminal'
-const applicationType: 'terminal';
+const applicationType = 'terminal';
 
 const openAppOptions = {
   minHeight: '350px',
@@ -105,7 +105,7 @@ Shows some response on the open Terminal application.
 ** @options: Object [optional]
 */
 
-// Break lines will be preserved
+// Line breaks will be preserved
 const response = `
 + @glorious/demo successfully installed!
 + v0.1.0
