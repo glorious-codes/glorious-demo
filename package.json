@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "description": "The easiest way to demonstrate your code in action",
   "main": "dist/gdemo.min.js",
+  "files": [
+    "./dist",
+    "./README.md"
+  ],
   "scripts": {
     "build": "node ./babelrc && ./node_modules/webpack/bin/webpack.js",
-    "test": "node ./babelrc --env=test && ./node_modules/jest/bin/jest.js"
+    "test": "node ./babelrc --env=test && ./node_modules/jest/bin/jest.js",
+    "prepublish": "npm build"
   },
   "repository": {
     "type": "git",
