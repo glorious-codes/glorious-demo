@@ -22,7 +22,7 @@ npm install @glorious/demo --save
 <script src="node_modules/@glorious/demo/dist/gdemo.min.js"></script>
 ```
 
-*Note: If you're not into package management, load it from a third-party [CDN provider](https://github.com/rafaelcamargo/glorious-demo/wiki/CDN-Poviders).*
+*Note: If you're not into package management, load it from a third-party [CDN provider](https://github.com/rafaelcamargo/glorious-demo/wiki/CDN-Providers).*
 
 ``` javascript
 // Constructor receives a selector that indicates
