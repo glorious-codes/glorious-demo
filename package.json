@@ -10,7 +10,7 @@
   "scripts": {
     "build": "node ./babelrc && ./node_modules/webpack/bin/webpack.js",
     "test": "node ./babelrc --env=test && ./node_modules/jest/bin/jest.js",
-    "prepublish": "npm build"
+    "prepublishOnly": "npm run build -- --env=production"
   },
   "repository": {
     "type": "git",
