@@ -23,6 +23,8 @@ npm install @glorious/demo --save
 ```
 
 ``` javascript
+// Constructor receives any css selector that indicates
+// where to inject the demonstration in your page.
 const demo = new GDemo('#container');
 
 demo
@@ -121,6 +123,9 @@ const respondOptions = {
 
 demo.openApp('terminal').respond(response, respondOptions).end();
 ```
+
+#### `end`
+Indicates the end of the demonstration. Do not forget to invoke it at the end of your demo. Otherwise, the demo won't be played.
 
 ## Contributing
 
