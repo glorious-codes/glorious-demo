@@ -19,8 +19,10 @@ npm install @glorious/demo --save
 
 ``` html
 <link rel="stylesheet" href="node_modules/@glorious/demo/dist/gdemo.min.css">
-<script src="node_modules/@glorious/demo/dist/gdemo.min.js" charset="utf-8"></script>
+<script src="node_modules/@glorious/demo/dist/gdemo.min.js"></script>
 ```
+
+*Note: If you're not into package management, load it from a third-party [CDN provider](https://github.com/rafaelcamargo/glorious-demo/wiki/CDN-Poviders).*
 
 ``` javascript
 // Constructor receives a selector that indicates
