@@ -14,7 +14,10 @@ module.exports = {
       test: /\.(styl|css)$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader', 'stylus-loader']
+        use: [
+          {loader: 'css-loader', options: {minimize: true}},
+          'stylus-loader'
+        ]
       })
     }, {
       test: /\.html$/,
