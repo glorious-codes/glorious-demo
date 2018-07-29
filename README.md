@@ -5,7 +5,9 @@
 [![CircleCI](https://circleci.com/gh/rafaelcamargo/glorious-demo.svg?style=svg)](https://circleci.com/gh/rafaelcamargo/glorious-demo)
 [![codecov](https://codecov.io/gh/rafaelcamargo/glorious-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/rafaelcamargo/glorious-demo)
 
+<p align="center">
 ![gdemo4](https://user-images.githubusercontent.com/4738687/43367796-29012b54-9329-11e8-9651-66d98d107ecd.gif)
+</p>
 
 ## Install
 
