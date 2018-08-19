@@ -30,4 +30,9 @@ third line`;
     expect(textService.removeBlankFirstLine(text)).toEqual(['first line']);
   });
 
+  it('should identify text that contains html', () => {
+    const text = 'some <strong>bold</strong> text';
+    expect(textService.containsHtml(text)).toEqual(true);
+  });
+
 });

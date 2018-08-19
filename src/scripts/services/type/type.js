@@ -1,16 +1,14 @@
+import textService from '../text/text';
+import typePlainTextService from '../type-plain-text/type-plain-text';
+import typeHtmlTextService from '../type-html-text/type-html-text';
+
 const _public = {};
 
 _public.type = (container, text, onComplete) => {
-  const letters = text.split('');
-  const letter = letters.shift();
-  if(letter) {
-    container.append(letter);
-    setTimeout(() => {
-      _public.type(container, letters.join(''), onComplete);
-    }, 75);
-  } else {
-    onComplete();
-  }
-}
+  if(textService.containsHtml(text))
+    typeHtmlTextService.type(container, text, onComplete);
+  else
+    typePlainTextService.type(container, text, onComplete);
+};
 
 export default _public;
