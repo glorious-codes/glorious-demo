@@ -6,7 +6,7 @@
 [![codecov](https://codecov.io/gh/rafaelcamargo/glorious-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/rafaelcamargo/glorious-demo)
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/4738687/43367796-29012b54-9329-11e8-9651-66d98d107ecd.gif" />
+  <img src="https://user-images.githubusercontent.com/4738687/44317370-3d998e00-a407-11e8-94fc-6716facba3a2.gif" />
 </p>
 
 ## Install
@@ -29,17 +29,25 @@ npm install @glorious/demo --save
 // where to inject the demonstration in your page.
 const demo = new GDemo('#container');
 
+const code = `
+function greet(){
+  console.log("Hello World!");
+}
+
+greet();
+`
+
 demo
-  .openApp('editor', {minHeight: '350px', windowTitle: '~/gdemo.js'})
-  .write(`
-console.log('Glorious Demo!');
-`, {onCompleteDelay: 1500})
-  .openApp('terminal', {minHeight: '350px', promptString: '~/'})
-  .command('node gdemo', {onCompleteDelay: 500})
-  .respond('Glorious Demo!')
+  .openApp('editor', {minHeight: '350px', windowTitle: 'demo.js'})
+  .write(code, {onCompleteDelay: 1500})
+  .openApp('terminal', {minHeight: '350px', promptString: '$'})
+  .command('node ./demo', {onCompleteDelay: 500})
+  .respond('Hello World!')
   .command('')
   .end();
 ```
+
+*NOTE: Check [here](https://github.com/rafaelcamargo/glorious-demo/wiki/Syntax-highlight) to know how to use Prism to get your code highlighted.*
 
 ### API
 
