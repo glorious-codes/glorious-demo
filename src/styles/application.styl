@@ -2,13 +2,13 @@
 @import '_mixins'
 
 $application-action-size = 8px
-$application-title-line-height = $font-size-xl
 $application-box-shadow-intensity = 12px 18px 48px 0
 $application-box-shadow-color = alpha($color-darkest, .6)
 
 .application
   background-color $color-darkest
   color alpha($color-lightest, .5)
+  font-family 'Helvetica', 'Arial', sans-serif
   box-shadow $application-box-shadow-intensity $application-box-shadow-color
   overflow hidden
   border-radius(6px)
