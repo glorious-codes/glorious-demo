@@ -6,7 +6,7 @@
 [![codecov](https://codecov.io/gh/rafaelcamargo/glorious-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/rafaelcamargo/glorious-demo)
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/4738687/44317370-3d998e00-a407-11e8-94fc-6716facba3a2.gif" />
+  <img src="https://user-images.githubusercontent.com/4738687/44633197-01fa4900-a95e-11e8-9b53-66e9043e2533.gif" />
 </p>
 
 ## Install
