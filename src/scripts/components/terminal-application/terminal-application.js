@@ -1,4 +1,3 @@
-import '@styles/terminal-application.styl';
 import textService from '../../services/text/text';
 import { Application } from '../application/application';
 import { TerminalCommandLine } from '../terminal-command-line/terminal-command-line';
@@ -9,6 +8,7 @@ export class TerminalApplication extends Application {
     super('terminal', options);
     this.container = container;
     this.container.appendChild(this.element);
+    this.commandLines = [];
     this.setWindowTitle(buildWindowTitle(options));
     this.setPromptString(buildPromptString(options));
   }
@@ -16,9 +16,8 @@ export class TerminalApplication extends Application {
     this.promptString = string;
   }
   command({ command }, onComplete){
-    const line = new TerminalCommandLine(this.promptString);
-    this.addContent(line.element);
-    line.command(command, onComplete);
+    setLastCommandLineWrittenAsInactive(this.commandLines);
+    writeCommandLine(this, command, onComplete);
   }
   respond({ response }, onComplete){
     const responseLines = textService.removeBlankFirstLine(response);
@@ -34,6 +33,19 @@ function buildWindowTitle(options){
 
 function buildPromptString(options){
   return options.promptString || '~/demo $';
+}
+
+function setLastCommandLineWrittenAsInactive(commandLines){
+  if(commandLines.length)
+    commandLines[commandLines.length - 1].setInactive();
+}
+
+function writeCommandLine(terminalApplication, command, onComplete){
+  const line = new TerminalCommandLine(terminalApplication.promptString);
+  terminalApplication.commandLines.push(line);
+  terminalApplication.addContent(line.element);
+  line.setActive();
+  line.command(command, onComplete);
 }
 
 function buildResponseLineElement(lineText){

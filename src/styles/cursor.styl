@@ -1,0 +1,30 @@
+@import '_variables'
+@import '_mixins'
+
+@keyframes blink
+  0%
+    background-color $color-lightest
+  100%
+    background-color transparent
+
+$cursor-height = $font-size-xl
+
+.cursor
+  display inline-block
+  height $cursor-height
+  &.cursor-active
+    position relative
+    &:after
+      position absolute
+      content ' '
+      top 50%
+      right -3px
+      width 1px
+      height 17px
+      animation .7s blink ease-in-out infinite
+      transform('translateY(-50%)')
+    &.is-typing
+      &:after
+        right 0
+        background-color alpha($color-lightest, .5)
+        animation none

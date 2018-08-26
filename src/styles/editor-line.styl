@@ -1,4 +1,5 @@
 @require 'application'
+@require 'cursor'
 
 $editor-line-number-width = 25px
 
@@ -8,6 +9,7 @@ $editor-line-number-width = 25px
 .editor-line-number,
 .editor-line-text
   margin 0
+  height $cursor-height
 
 .editor-line-number
   position absolute

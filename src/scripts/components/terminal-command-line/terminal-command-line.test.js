@@ -1,5 +1,10 @@
-import { TerminalCommandLine } from './terminal-command-line';
 import typeService from '../../services/type/type';
+import { Cursor } from '../cursor/cursor';
+import { TerminalCommandLine } from './terminal-command-line';
+import { CursorMock, cursorInstanceMock } from '@mocks/cursor-mock';
+
+jest.mock('../cursor/cursor');
+Cursor.mockImplementation(CursorMock);
 
 describe('Terminal Command Line Component', () => {
 
@@ -13,14 +18,32 @@ describe('Terminal Command Line Component', () => {
     expect(textElement.classList[0]).toEqual('terminal-command-line-text');
   });
 
-  it('should write some command', () => {
-    spyOn(typeService, 'type');
+  it('should append a cursor element in terminal line text element on instantiate', () => {
+    const line = new TerminalCommandLine();
+    const cursorElement = line.element.querySelectorAll('[data-terminal-command-line-text] > span');
+    expect(cursorElement.length).toEqual(1);
+  });
+
+  it('should write some command using cursor', () => {
     const line = new TerminalCommandLine();
     const command = 'npm install';
     const onComplete = jest.fn();
-    const commandTextContainer = line.element.querySelector('[data-terminal-command-line-text]');
     line.command(command, onComplete);
-    expect(typeService.type).toHaveBeenCalledWith(commandTextContainer, command, onComplete);
+    expect(line.cursor.write).toHaveBeenCalledWith(command, onComplete);
+  });
+
+  it('should set line as active', () => {
+    const line = new TerminalCommandLine();
+    line.cursor.setActive = jest.fn();
+    line.setActive();
+    expect(line.cursor.setActive).toHaveBeenCalled();
+  });
+
+  it('should set line as inactive', () => {
+    const line = new TerminalCommandLine();
+    line.cursor.setInactive = jest.fn();
+    line.setInactive();
+    expect(line.cursor.setInactive).toHaveBeenCalled();
   });
 
 });
