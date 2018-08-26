@@ -82,6 +82,23 @@ describe('Terminal Application Component', () => {
     expect(terminalCommandLineInstanceMock.command).toHaveBeenCalledWith(command, onComplete);
   });
 
+  it('should set line as active on command', () => {
+    const application = instantiateTerminalApplication();
+    spyOn(application, 'addContent');
+    application.command({ command: 'npm install' }, jest.fn());
+    expect(terminalCommandLineInstanceMock.setActive).toHaveBeenCalled();
+  });
+
+  it('should set last line commanded as inactive on command', () => {
+    const application = instantiateTerminalApplication();
+    spyOn(application, 'addContent');
+    application.command({ command: 'first command' }, jest.fn());
+    const lastLineCommanded = application.commandLines[application.commandLines.length - 1];
+    lastLineCommanded.setInactive = jest.fn();
+    application.command({ command: 'second command' }, jest.fn());
+    expect(lastLineCommanded.setInactive).toHaveBeenCalled();
+  });
+
   it('should build a response line on respond', () => {
     const application = instantiateTerminalApplication();
     const response = 'Successfully installed!';
