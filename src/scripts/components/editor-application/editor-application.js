@@ -23,17 +23,25 @@ function buildWindowTitle(options){
 
 function writeMultipleLines(application, textLines, onComplete){
   const textLine = textLines.shift();
-  if(textLine !== undefined)
+  if(textLine !== undefined){
+    inactivateLastLineWritten(application.lines);
     writeSingleLine(application, textLine, () => {
       writeMultipleLines(application, textLines, onComplete);
     });
-  else
+  } else {
     onComplete();
+  }
+}
+
+function inactivateLastLineWritten(lines){
+  if(lines.length)
+    lines[lines.length-1].setInactive();
 }
 
 function writeSingleLine(application, textLine, onComplete){
   const line = new EditorLine(application.lines.length + 1);
   application.addContent(line.element);
   application.lines.push(line);
+  line.setActive();
   line.write(textLine, onComplete);
 }

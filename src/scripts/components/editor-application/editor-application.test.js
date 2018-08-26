@@ -54,6 +54,16 @@ describe('Editor Application Component', () => {
     expect(editorLineInstanceMock.write).toHaveBeenCalledWith(codeSample, jasmine.any(Function));
   });
 
+  it('should set line as active on write', () => {
+    const application = instantiateEditorApplication();
+    const codeSample = 'Line 1';
+    const onComplete = jest.fn();
+    spyOn(application, 'addContent');
+    stubRemoveBlankFirstLine(codeSample.split('\n'));
+    application.write({ codeSample }, onComplete);
+    expect(editorLineInstanceMock.setActive.mock.calls.length).toEqual(1);
+  });
+
   it('should write a multi-line code', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1\nLine 2\nLine 3';
@@ -69,6 +79,16 @@ describe('Editor Application Component', () => {
     expect(editorLineInstanceMock.write.mock.calls[1][0]).toEqual('Line 2');
     expect(editorLineInstanceMock.write.mock.calls[2][0]).toEqual('Line 3');
     expect(editorLineInstanceMock.write.mock.calls.length).toEqual(3);
+  });
+
+  it('should set last line written as inactive when writing a new line', () => {
+    const application = instantiateEditorApplication();
+    const codeSample = 'Line 1\nLine 2';
+    const onComplete = jest.fn();
+    spyOn(application, 'addContent');
+    stubRemoveBlankFirstLine(codeSample.split('\n'));
+    application.write({ codeSample }, onComplete);
+    expect(editorLineInstanceMock.setInactive.mock.calls.length).toEqual(1);
   });
 
   it('should execute on complete callback after finish writing some code', () => {
