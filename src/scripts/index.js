@@ -28,7 +28,10 @@ export default class {
     this.steps.push({
       app: 'terminal',
       action: 'command',
-      params: { command },
+      params: {
+        command,
+        promptString: options.promptString
+      },
       onCompleteDelay: options.onCompleteDelay
     });
     return this;

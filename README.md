@@ -107,6 +107,7 @@ Writes some command in the open Terminal application.
 const command = 'npm install @glorious/demo --save';
 
 const commandOptions = {
+  promptString: '$' // Redefines prompt string for this and following commands
   onCompleteDelay: 500 // Delay before executing the next method
 }
 
