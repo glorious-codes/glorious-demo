@@ -82,6 +82,16 @@ describe('Terminal Application Component', () => {
     expect(terminalCommandLineInstanceMock.command).toHaveBeenCalledWith(command, onComplete);
   });
 
+  it('should allow customizing prompt string when writing some command', () => {
+    const application = instantiateTerminalApplication({ promptString: '~/demo $' });
+    const command = 'npm install';
+    const onComplete = jest.fn();
+    const customPromptString = '>';
+    spyOn(application, 'addContent');
+    application.command({ command, promptString: customPromptString }, onComplete);
+    expect(application.promptString).toEqual(customPromptString);
+  });
+
   it('should set line as active on command', () => {
     const application = instantiateTerminalApplication();
     spyOn(application, 'addContent');

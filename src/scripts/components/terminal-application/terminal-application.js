@@ -15,7 +15,9 @@ export class TerminalApplication extends Application {
   setPromptString(string){
     this.promptString = string;
   }
-  command({ command }, onComplete){
+  command({ command, promptString }, onComplete){
+    if(promptString)
+      this.setPromptString(promptString);
     setLastCommandLineWrittenAsInactive(this.commandLines);
     writeCommandLine(this, command, onComplete);
   }

@@ -53,14 +53,14 @@ describe('Glorious Demo class', () => {
       .openApp('editor', {windowTitle: 'atom', onCompleteDelay: 200})
       .write('console.log("hello!");', { onCompleteDelay: 300 })
       .openApp('terminal', {windowTitle: 'bash'})
-      .command('node demo.js', { onCompleteDelay: 400 })
+      .command('node demo.js', { promptString: '>', onCompleteDelay: 400 })
       .respond('hello!', { onCompleteDelay: 500 })
       .end();
     expect(Player).toHaveBeenCalledWith(gDemo.container, [
       {app: 'editor', options: {windowTitle: 'atom', onCompleteDelay: 200}, onCompleteDelay: 200},
       {app: 'editor', action: 'write', params: {codeSample: 'console.log("hello!");'}, onCompleteDelay: 300},
       {app: 'terminal', options: {windowTitle: 'bash'}, onCompleteDelay: undefined},
-      {app: 'terminal', action: 'command', params: {command: 'node demo.js'}, onCompleteDelay: 400},
+      {app: 'terminal', action: 'command', params: {command: 'node demo.js', promptString: '>'}, onCompleteDelay: 400},
       {app: 'terminal', action: 'respond', params: {response: 'hello!'}, onCompleteDelay: 500}
     ]);
     expect(playerInstanceMock.play).toHaveBeenCalled();
