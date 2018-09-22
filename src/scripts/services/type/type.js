@@ -1,4 +1,4 @@
-import textService from '../text/text';
+import domService from '../dom/dom';
 import typePlainTextService from '../type-plain-text/type-plain-text';
 import typeHtmlTextService from '../type-html-text/type-html-text';
 
@@ -19,7 +19,7 @@ function handleIsTypingCssClass(element, action, cssClass){
 }
 
 function getSpecificTypeService(text){
-  if(textService.containsHtml(text))
+  if(domService.containsClosingHtmlTag(text))
     return typeHtmlTextService;
   return typePlainTextService;
 }

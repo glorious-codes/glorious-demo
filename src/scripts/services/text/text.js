@@ -15,8 +15,4 @@ _public.removeBlankFirstLine = text => {
   return lines;
 };
 
-_public.containsHtml = text => {
-  return text.includes('<');
-};
-
 export default _public;

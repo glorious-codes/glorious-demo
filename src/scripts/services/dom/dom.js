@@ -15,6 +15,11 @@ _public.clearNodeContent = node => {
   return node;
 };
 
+_public.containsClosingHtmlTag = string => {
+  const regex = new RegExp('</.+>', 'gm');
+  return regex.test(string);
+};
+
 _public.isHtmlNodeTypeText = node => {
   return node && node.nodeName.toLowerCase() == '#text';
 };

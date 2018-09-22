@@ -19,14 +19,12 @@ describe('Terminal Command Line Component', () => {
 
   it('should set prompt string as plain text', () => {
     const line = new TerminalCommandLine('>');
-    const wrapper = line.element;
     const promptStringElement = line.element.querySelector('[data-terminal-command-line-prompt-string]');
     expect(promptStringElement.innerHTML.trim()).toEqual('&gt;');
   });
 
   it('should set prompt string as html', () => {
     const line = new TerminalCommandLine('<span>!</span>');
-    const wrapper = line.element;
     const promptStringElement = line.element.querySelector('[data-terminal-command-line-prompt-string]');
     expect(promptStringElement.querySelector('span').innerHTML).toEqual('!');
   });

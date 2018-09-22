@@ -106,8 +106,14 @@ Writes some command in the open Terminal application.
 
 const command = 'npm install @glorious/demo --save';
 
+// Redefines prompt string for this and following commands
+const promptString = '$'
+
+// Can optionally be an HTML string:
+const promptString = '<span class="my-custom-class">$</span>'
+
 const commandOptions = {
-  promptString: '$' // Redefines prompt string for this and following commands
+  promptString,
   onCompleteDelay: 500 // Delay before executing the next method
 }
 
@@ -126,6 +132,12 @@ Shows some response on the open Terminal application.
 const response = `
 + @glorious/demo successfully installed!
 + v0.1.0
+`;
+
+// Can optionally be an HTML string:
+const response = `
+<div><span class="my-custom-class">+</span> @glorious/demo successfully installed!</div>
+<div><span class="my-custom-class">+</span> v0.6.0</div>
 `;
 
 const respondOptions = {
