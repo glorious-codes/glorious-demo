@@ -4,7 +4,7 @@ import domService from '../../services/dom/dom';
 import template from './terminal-response-line.html';
 
 export class TerminalResponseLine extends TerminalLine {
-  constructor(lineText){
+  constructor(){
     super();
     this.setContent(domService.parseHtml(template));
   }

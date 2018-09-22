@@ -8,9 +8,15 @@ export class TerminalApplication extends Application {
     super('terminal', options);
     this.container = container;
     this.container.appendChild(this.element);
-    this.commandLines = [];
+    this.setCommandLines([]);
+    this.configOptions(options);
+  }
+  configOptions(options){
     this.setWindowTitle(buildWindowTitle(options));
     this.setPromptString(buildPromptString(options));
+  }
+  setCommandLines(lines){
+    this.commandLines = lines;
   }
   setPromptString(string){
     this.promptString = string;

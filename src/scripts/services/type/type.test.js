@@ -22,7 +22,7 @@ describe('Type Service', () => {
 
   beforeEach(() => {
     typeHtmlTextService.type = jest.fn();
-  })
+  });
 
   it('should type some plain text', () => {
     const container = mockContainer();

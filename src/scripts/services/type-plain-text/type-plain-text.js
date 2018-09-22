@@ -7,7 +7,7 @@ _public.type = (container, text, onComplete) => {
     appendLetter(container, letter, letters, onComplete);
   else
     onComplete();
-}
+};
 
 function appendLetter(container, letter, letters, onComplete){
   container.append(letter);

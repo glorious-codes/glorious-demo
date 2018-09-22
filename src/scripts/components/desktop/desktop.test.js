@@ -1,8 +1,8 @@
 import { Desktop } from './desktop';
 import { EditorApplication } from '../editor-application/editor-application';
 import { TerminalApplication } from '../terminal-application/terminal-application';
-import { EditorApplicationMock, editorApplicationInstanceMock } from '@mocks/editor-application-mock';
-import { TerminalApplicationMock, terminalApplicationInstanceMock } from '@mocks/terminal-application-mock';
+import { EditorApplicationMock } from '@mocks/editor-application-mock';
+import { TerminalApplicationMock } from '@mocks/terminal-application-mock';
 
 jest.mock('../editor-application/editor-application');
 EditorApplication.mockImplementation(EditorApplicationMock);

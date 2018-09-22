@@ -1,0 +1,37 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2015,
+    "sourceType": "module"
+  },
+  "globals": {
+    "spyOn": true,
+    "module": true
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "complexity": ["error", { "max": 3 }],
+    "max-lines": ["error", { "max": 100 }],
+    "max-statements": ["error", { "max": 5 }]
+  },
+  "overrides": [
+    {
+      "files": [ "src/**/*.test.js" ],
+      "rules": {
+        "max-lines": ["error", { "max": 200 }],
+        "max-statements": [
+          "error", { "max": 10 },
+          { "ignoreTopLevelFunctions": true }
+        ]
+      }
+    }
+  ]
+}

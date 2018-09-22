@@ -27,7 +27,7 @@ describe('Player Component', () => {
     const options = {windowTitle: 'Atom'};
     const steps = [{app: 'editor', options}];
     const player = instantiatePlayer(steps);
-    expect(player.steps).toEqual(steps)
+    expect(player.steps).toEqual(steps);
   });
 
   it('should build desktop passing player container on instantiate', () => {
@@ -93,10 +93,8 @@ describe('Player Component', () => {
     const application = mockMaximizedTerminalApplication();
     player.desktop.openApplication.mockReturnValue(application);
     player.play();
-    expect(application.command).toHaveBeenCalled();
     jest.runOnlyPendingTimers();
     expect(player.currentStep).toEqual(1);
-    expect(application.respond).toHaveBeenCalled();
     jest.runOnlyPendingTimers();
     expect(player.currentStep).toEqual(2);
   });
