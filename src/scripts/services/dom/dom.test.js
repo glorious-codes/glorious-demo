@@ -25,6 +25,25 @@ describe('DOM Service', () => {
     expect(clearedNode.innerHTML).toEqual('');
   });
 
+  it('should detect some closing html tag in a string', () => {
+    const string = '<span>Text</span>';
+    expect(domService.containsClosingHtmlTag(string)).toEqual(true);
+  });
+
+  it('should detect some closing html tag in a multi line string', () => {
+    const string = `
+    <span>
+      Text
+    </span>
+    `;
+    expect(domService.containsClosingHtmlTag(string)).toEqual(true);
+  });
+
+  it('should not detect some closing html tag when string does not contain it', () => {
+    const string = 'No Closing Tags';
+    expect(domService.containsClosingHtmlTag(string)).toEqual(false);
+  });
+
   it('should identify text html nodes', () => {
     const notTextNode = createElement('div');
     notTextNode.append('Some text');

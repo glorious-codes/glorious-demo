@@ -10,6 +10,16 @@ export class TerminalResponseLine extends TerminalLine {
   }
   setText(text){
     const textContainer = this.element.querySelector('[data-terminal-response-line-text]');
-    textContainer.innerText = text;
+    return domService.containsClosingHtmlTag(text) ?
+      appendHtml(textContainer, domService.parseHtml(text)) :
+      appendText(textContainer, text);
   }
+}
+
+function appendHtml(container, html){
+  container.appendChild(html);
+}
+
+function appendText(container, text){
+  container.innerText = text;
 }
