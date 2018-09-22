@@ -1,7 +1,6 @@
 import '@styles/terminal-command-line.styl';
 import { Cursor } from '../cursor/cursor';
 import { TerminalLine } from '../terminal-line/terminal-line';
-import typeService from '../../services/type/type';
 import domService from '../../services/dom/dom';
 import template from './terminal-command-line.html';
 

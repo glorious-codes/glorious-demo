@@ -39,7 +39,7 @@ describe('Terminal Application Component', () => {
   });
 
   it('should config window title with the window title given as option', () => {
-    const windowTitle = 'zsh'
+    const windowTitle = 'zsh';
     const application = instantiateTerminalApplication({ windowTitle });
     expect(application.windowTitle).toEqual(windowTitle);
   });
@@ -50,7 +50,7 @@ describe('Terminal Application Component', () => {
   });
 
   it('should config prompt string with the prompt string given as option', () => {
-    const promptString = '> $'
+    const promptString = '> $';
     const application = instantiateTerminalApplication({ promptString });
     expect(application.promptString).toEqual(promptString);
   });

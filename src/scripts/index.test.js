@@ -6,15 +6,13 @@ jest.mock('./components/player/player');
 Player.mockImplementation(PlayerMock);
 
 describe('Glorious Demo class', () => {
-  let container;
-
   function instantiateGDemo(){
     return new GDemo('[data-container]');
   }
 
   beforeEach(() => {
     spyOn(document, 'querySelector').and.returnValue({});
-  })
+  });
 
   it('should build its container on instantiate', () => {
     const gDemo = instantiateGDemo();

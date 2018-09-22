@@ -44,7 +44,7 @@ export class Application {
   }
 }
 
-function buildElement(applicationType, windowTitle){
+function buildElement(applicationType){
   let element = buildWrapper(applicationType);
   element.appendChild(domService.parseHtml(template));
   return element;
@@ -66,6 +66,6 @@ function getWindowTitleContainerElement(applicationElement){
 }
 
 function handleMaximizedCssClass(element, classListMethod){
-  const application = element.querySelector('[data-application]')
+  const application = element.querySelector('[data-application]');
   application.classList[classListMethod]('application-maximized');
 }

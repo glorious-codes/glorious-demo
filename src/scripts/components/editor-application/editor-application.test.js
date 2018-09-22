@@ -28,7 +28,7 @@ describe('Editor Application Component', () => {
   });
 
   it('should config window title with the window title given as option', () => {
-    const windowTitle = 'Atom'
+    const windowTitle = 'Atom';
     const application = instantiateEditorApplication({ windowTitle });
     expect(application.windowTitle).toEqual(windowTitle);
   });
@@ -37,44 +37,50 @@ describe('Editor Application Component', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1';
     const onComplete = jest.fn();
-    spyOn(application, 'addContent');
+    application.addContent = jest.fn();
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write({ codeSample }, onComplete);
     expect(application.addContent).toHaveBeenCalledWith(editorLineInstanceMock.element);
   });
 
-  it('should write a single-line code', () => {
+  it('should instance a editor application line when writing some code', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1';
     const onComplete = jest.fn();
-    spyOn(application, 'addContent');
+    application.addContent = jest.fn();
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write({ codeSample }, onComplete);
     expect(EditorLineMock).toHaveBeenCalledWith(1);
-    expect(editorLineInstanceMock.write).toHaveBeenCalledWith(codeSample, jasmine.any(Function));
   });
 
   it('should set line as active on write', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1';
     const onComplete = jest.fn();
-    spyOn(application, 'addContent');
+    application.addContent = jest.fn();
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write({ codeSample }, onComplete);
     expect(editorLineInstanceMock.setActive.mock.calls.length).toEqual(1);
+  });
+
+  it('should write a single-line code', () => {
+    const application = instantiateEditorApplication();
+    const codeSample = 'Line 1';
+    const onComplete = jest.fn();
+    application.addContent = jest.fn();
+    stubRemoveBlankFirstLine(codeSample.split('\n'));
+    application.write({ codeSample }, onComplete);
+    expect(editorLineInstanceMock.write.mock.calls[0][0]).toEqual(codeSample);
+    expect(typeof editorLineInstanceMock.write.mock.calls[0][1]).toEqual('function');
   });
 
   it('should write a multi-line code', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1\nLine 2\nLine 3';
     const onComplete = jest.fn();
-    spyOn(application, 'addContent');
+    application.addContent = jest.fn();
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write({ codeSample }, onComplete);
-    expect(EditorLineMock.mock.calls[0][0]).toEqual(1);
-    expect(EditorLineMock.mock.calls[1][0]).toEqual(2);
-    expect(EditorLineMock.mock.calls[2][0]).toEqual(3);
-    expect(EditorLineMock.mock.calls.length).toEqual(3);
     expect(editorLineInstanceMock.write.mock.calls[0][0]).toEqual('Line 1');
     expect(editorLineInstanceMock.write.mock.calls[1][0]).toEqual('Line 2');
     expect(editorLineInstanceMock.write.mock.calls[2][0]).toEqual('Line 3');
@@ -85,7 +91,7 @@ describe('Editor Application Component', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1\nLine 2';
     const onComplete = jest.fn();
-    spyOn(application, 'addContent');
+    application.addContent = jest.fn();
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write({ codeSample }, onComplete);
     expect(editorLineInstanceMock.setInactive.mock.calls.length).toEqual(1);
@@ -95,7 +101,7 @@ describe('Editor Application Component', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1';
     const onComplete = jest.fn();
-    spyOn(application, 'addContent');
+    application.addContent = jest.fn();
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write({ codeSample }, onComplete);
     expect(onComplete).toHaveBeenCalled();

@@ -1,7 +1,6 @@
-import typeService from '../../services/type/type';
 import { Cursor } from '../cursor/cursor';
 import { TerminalCommandLine } from './terminal-command-line';
-import { CursorMock, cursorInstanceMock } from '@mocks/cursor-mock';
+import { CursorMock } from '@mocks/cursor-mock';
 
 jest.mock('../cursor/cursor');
 Cursor.mockImplementation(CursorMock);

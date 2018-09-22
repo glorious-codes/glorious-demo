@@ -11,7 +11,7 @@ _public.type = (container, text, onComplete) => {
   getSpecificTypeService(text).type(container, text, () => {
     handleIsTypingCssClass(container, 'remove', TYPING_CSS_CLASS);
     onComplete();
-  })
+  });
 };
 
 function handleIsTypingCssClass(element, action, cssClass){

@@ -46,7 +46,7 @@ export default class {
     return this;
   }
   end(){
-    const player = new Player(this.container, this.steps)
+    const player = new Player(this.container, this.steps);
     player.play();
   }
-};
+}
