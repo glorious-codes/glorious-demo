@@ -17,6 +17,20 @@ describe('Terminal Command Line Component', () => {
     expect(textElement.classList[0]).toEqual('terminal-command-line-text');
   });
 
+  it('should set prompt string as plain text', () => {
+    const line = new TerminalCommandLine('>');
+    const wrapper = line.element;
+    const promptStringElement = line.element.querySelector('[data-terminal-command-line-prompt-string]');
+    expect(promptStringElement.innerHTML.trim()).toEqual('&gt;');
+  });
+
+  it('should set prompt string as html', () => {
+    const line = new TerminalCommandLine('<span>!</span>');
+    const wrapper = line.element;
+    const promptStringElement = line.element.querySelector('[data-terminal-command-line-prompt-string]');
+    expect(promptStringElement.querySelector('span').innerHTML).toEqual('!');
+  });
+
   it('should append a cursor element in terminal line text element on instantiate', () => {
     const line = new TerminalCommandLine();
     const cursorElement = line.element.querySelectorAll('[data-terminal-command-line-text] > span');

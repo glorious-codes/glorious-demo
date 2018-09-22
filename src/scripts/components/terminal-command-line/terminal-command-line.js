@@ -14,7 +14,7 @@ export class TerminalCommandLine extends TerminalLine {
   }
   setPromptString(promptString){
     const container = this.element.querySelector('[data-terminal-command-line-prompt-string]');
-    container.innerText = promptString;
+    container.appendChild(domService.parseHtml(promptString));
   }
   command(text, onComplete){
     this.cursor.write(text, onComplete);
