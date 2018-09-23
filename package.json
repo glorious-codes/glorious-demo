@@ -1,6 +1,6 @@
 {
   "name": "@glorious/demo",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "The easiest way to demonstrate your code in action",
   "main": "dist/gdemo.min.js",
   "files": ["dist/**/*.*"],
@@ -8,7 +8,7 @@
     "format": "./node_modules/eslint/bin/eslint.js './src/**/*.js'",
     "build": "./node_modules/webpack/bin/webpack.js",
     "test": "./node_modules/jest/bin/jest.js",
-    "prepublishOnly": "npm run build -- --env=production"
+    "prepublishOnly": "rm -rf ./dist && npm run build -- --env=production"
   },
   "repository": {
     "type": "git",
