@@ -9,7 +9,7 @@
   <img src="https://user-images.githubusercontent.com/4738687/44633197-01fa4900-a95e-11e8-9b53-66e9043e2533.gif" />
 </p>
 
-## Install
+## Installation
 
 ```
 npm install @glorious/demo --save
