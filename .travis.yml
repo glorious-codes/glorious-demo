@@ -1,0 +1,14 @@
+language: node_js
+
+node_js:
+  - 8.9.4
+
+install:
+  - npm install
+
+cache: npm
+
+script:
+  - npm run format
+  - npm run build -- --env=production
+  - npm run test -- --coverage --coverageReporters=lcov && ./node_modules/codecov/bin/codecov
