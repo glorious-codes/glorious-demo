@@ -156,7 +156,7 @@ Indicates the end of the demonstration. Do not forget to invoke it at the end of
 
 2. Clone the repo:
 ``` bash
-git clone git@github.com:rafaelcamargo/glorious-demo.git
+git clone git@github.com:glorious-codes/glorious-demo.git
 ```
 
 3. Go to the project directory:
@@ -178,5 +178,5 @@ npm run build
 
 Ensure that all code that you have added is covered with unit tests:
 ``` bash
-npm run test
+npm run test -- --coverage
 ```
