@@ -1,5 +1,4 @@
-const webpack = require('webpack'),
-  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+const ExtractTextPlugin = require('extract-text-webpack-plugin'),
   project = require('./project.json');
 
 module.exports = {
@@ -34,4 +33,4 @@ module.exports = {
       '@styles': `${__dirname}/${project.styles.source.root}`
     }
   }
-}
+};
