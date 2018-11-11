@@ -7,7 +7,7 @@ export class Player {
     this.desktop = new Desktop(container);
     this.setCurrentStep(0);
   }
-  play(){
+  play(onComplete){
     let currentStep = this.getCurrentStep();
     if(currentStep < this.steps.length){
       const step = this.steps[currentStep];
@@ -15,6 +15,8 @@ export class Player {
         this.setCurrentStep(currentStep + 1);
         this.play();
       }, step.onCompleteDelay);
+    } else if(onComplete) {
+      onComplete();
     }
   }
   getCurrentStep(){
