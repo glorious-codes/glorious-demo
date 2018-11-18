@@ -17,9 +17,15 @@ export class TerminalResponseLine extends TerminalLine {
 }
 
 function appendHtml(container, html){
+  addElementCssClass(container, 'terminal-response-line-html-text');
   container.appendChild(html);
 }
 
 function appendText(container, text){
+  addElementCssClass(container, 'terminal-response-line-plain-text');
   container.innerText = text;
+}
+
+function addElementCssClass(element, cssClass){
+  element.classList.add(cssClass);
 }
