@@ -18,12 +18,26 @@ describe('Terminal Response Line Component', () => {
     expect(textElement.innerText).toEqual(text);
   });
 
+  it('should set plain text css class on set line as plain text', () => {
+    const line = new TerminalResponseLine();
+    line.setText('');
+    const textElement = line.element.querySelector('[data-terminal-response-line-text]');
+    expect(textElement.classList.contains('terminal-response-line-plain-text')).toEqual(true);
+  });
+
   it('should set line as html', () => {
     const text = '<span>hello</span>';
     const line = new TerminalResponseLine();
     line.setText(text);
     const textElement = line.element.querySelector('[data-terminal-response-line-text]');
     expect(textElement.querySelector('span').innerHTML).toEqual('hello');
+  });
+
+  it('should set plain text css class on set line as plain text', () => {
+    const line = new TerminalResponseLine();
+    line.setText('<span>hello</span>');
+    const textElement = line.element.querySelector('[data-terminal-response-line-text]');
+    expect(textElement.classList.contains('terminal-response-line-html-text')).toEqual(true);
   });
 
 });
