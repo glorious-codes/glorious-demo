@@ -2,7 +2,7 @@ import '@styles/desktop.styl';
 import { EditorApplication } from '../editor-application/editor-application';
 import { TerminalApplication } from '../terminal-application/terminal-application';
 import domService from '../../services/dom/dom';
-import template from './desktop.html';
+import template from 'html-loader!./desktop.html';
 
 const ANIMATION_DEFAULT_DURATION = 750;
 

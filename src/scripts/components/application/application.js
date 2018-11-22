@@ -1,7 +1,7 @@
 import '@styles/application.styl';
 import domService from '../../services/dom/dom';
 import textService from '../../services/text/text';
-import template from './application.html';
+import template from 'html-loader!./application.html';
 
 export class Application {
   constructor(applicationType, options = {}){

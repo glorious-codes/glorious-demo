@@ -1,7 +1,7 @@
 import '@styles/editor-line.styl';
 import { Cursor } from '../cursor/cursor';
 import domService from '../../services/dom/dom';
-import template from './editor-line.html';
+import template from 'html-loader!./editor-line.html';
 
 export class EditorLine {
   constructor(lineNumber){

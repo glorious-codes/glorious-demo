@@ -1,7 +1,7 @@
 import '@styles/cursor.styl';
 import domService from '../../services/dom/dom';
 import typeService from '../../services/type/type';
-import template from './cursor.html';
+import template from 'html-loader!./cursor.html';
 
 const ACTIVE_CSS_CLASS = 'cursor-active';
 
