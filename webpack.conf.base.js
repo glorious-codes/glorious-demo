@@ -1,5 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin'),
-  project = require('./project.json');
+  project = require('./project.json'),path= require('path');
 
 module.exports = {
   entry: `${__dirname}/${project.scripts.source.entry}`,
@@ -20,7 +20,7 @@ module.exports = {
       })
     }, {
       test: /\.html$/,
-      include: [`${__dirname}/${project.scripts.source.root}`],
+      include: [path.resolve(__dirname,project.scripts.source.root)],
       use: 'html-loader'
     }, {
       test: /\.js$/,

@@ -7,9 +7,9 @@
     "dist/**/*.*"
   ],
   "scripts": {
-    "format": "./node_modules/eslint/bin/eslint.js './src/**/*.js'",
-    "build": "./node_modules/webpack/bin/webpack.js",
-    "test": "./node_modules/jest/bin/jest.js",
+    "format": "node ./node_modules/eslint/bin/eslint.js './src/**/*.js'",
+    "build": "node ./node_modules/webpack/bin/webpack.js",
+    "test": "node ./node_modules/jest/bin/jest.js",
     "prepublishOnly": "rm -rf ./dist && npm run build -- --env=production"
   },
   "repository": {
