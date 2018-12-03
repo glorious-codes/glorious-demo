@@ -1,5 +1,6 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin'),
-  project = require('./project.json'),path= require('path');
+const path= require('path'),
+  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  project = require('./project.json');
 
 module.exports = {
   entry: `${__dirname}/${project.scripts.source.entry}`,

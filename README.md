@@ -5,8 +5,8 @@
 [![CircleCI](https://circleci.com/gh/glorious-codes/glorious-demo.svg?style=svg)](https://circleci.com/gh/glorious-codes/glorious-demo)
 [![codecov](https://codecov.io/gh/glorious-codes/glorious-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/glorious-codes/glorious-demo)
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/4738687/44633197-01fa4900-a95e-11e8-9b53-66e9043e2533.gif" />
+<p style="margin: 0 auto; max-width: 480px;">
+  <img src="https://user-images.githubusercontent.com/4738687/49405334-49505c80-f739-11e8-992e-32f4b6e18311.gif" />
 </p>
 
 ## Installation
