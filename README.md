@@ -148,7 +148,19 @@ demo.openApp('terminal').respond(response, respondOptions).end();
 ```
 
 #### `end`
-Indicates the end of the demonstration. Do not forget to invoke it at the end of your demo. Otherwise, the demo won't be played.
+Indicates the end of the demonstration. The method returns a promise in case you want to perform some action at the end of the demonstration.
+
+``` javascript
+demo.openApp('terminal')
+    .command('node demo')
+    .respond('Hello World!')
+    .end()
+    .then(() => {
+      // Custom code to be performed at the end of the demostration goes here.
+    });
+```
+
+**IMPORTANT:** Do not forget to invoke it at the end of your demo. Otherwise, the demo won't be played.
 
 ## Contributing
 
