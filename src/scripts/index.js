@@ -47,6 +47,6 @@ export default class {
   }
   end(){
     const player = new Player(this.container, this.steps);
-    player.play();
+    return player.play();
   }
 }
