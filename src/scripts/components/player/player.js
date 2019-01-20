@@ -5,23 +5,33 @@ export class Player {
     this.container = container;
     this.steps = steps;
     this.desktop = new Desktop(container);
-    this.setCurrentStep(0);
+    this.setCurrentStepNumber(0);
   }
   play(){
-    let currentStep = this.getCurrentStep();
-    if(currentStep < this.steps.length){
-      const step = this.steps[currentStep];
-      playStep(this.desktop, step, () => {
-        this.setCurrentStep(currentStep + 1);
-        this.play();
-      }, step.onCompleteDelay);
-    }
+    return new Promise((resolve, reject) => {
+      playSteps(this, this.desktop, this.steps, () => {
+        resolve();
+      });
+    });
   }
-  getCurrentStep(){
-    return this.currentStep;
+  getCurrentStepNumber(){
+    return this.currentStepNumber;
   }
-  setCurrentStep(stepNumber){
-    this.currentStep = stepNumber;
+  setCurrentStepNumber(stepNumber){
+    this.currentStepNumber = stepNumber;
+  }
+}
+
+function playSteps(player, desktop, steps, onComplete){
+  let currentStepNumber = player.getCurrentStepNumber();
+  if(currentStepNumber < steps.length){
+    const step = steps[currentStepNumber];
+    playStep(desktop, step, () => {
+      player.setCurrentStepNumber(currentStepNumber + 1);
+      playSteps(player, desktop, steps, onComplete);
+    }, step.onCompleteDelay);
+  } else {
+    onComplete();
   }
 }
 

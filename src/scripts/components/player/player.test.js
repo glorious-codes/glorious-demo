@@ -36,9 +36,9 @@ describe('Player Component', () => {
     expect(player.desktop).toBeDefined();
   });
 
-  it('should set current step as zero on instantiate', () => {
+  it('should set current step number number as zero on instantiate', () => {
     const player = instantiatePlayer();
-    expect(player.currentStep).toEqual(0);
+    expect(player.currentStepNumber).toEqual(0);
   });
 
   it('should open step application when playing some step', () => {
@@ -84,7 +84,7 @@ describe('Player Component', () => {
     expect(typeof application.write.mock.calls[0][1]).toEqual('function');
   });
 
-  it('should increment current step after play some step', () => {
+  it('should increment current step number after play some step', () => {
     const steps = [
       {app: 'terminal', action: 'command'},
       {app: 'terminal', action: 'respond'}
@@ -94,15 +94,15 @@ describe('Player Component', () => {
     player.desktop.openApplication.mockReturnValue(application);
     player.play();
     jest.runOnlyPendingTimers();
-    expect(player.currentStep).toEqual(1);
+    expect(player.currentStepNumber).toEqual(1);
     jest.runOnlyPendingTimers();
-    expect(player.currentStep).toEqual(2);
+    expect(player.currentStepNumber).toEqual(2);
   });
 
   it('should optionally delay to play the next step', () => {
     const steps = [
       {app: 'terminal', action: 'command', params: {}, onCompleteDelay: 500},
-      {app: 'terminal', action: 'respond', params: {},}
+      {app: 'terminal', action: 'respond', params: {}}
     ];
     const player = instantiatePlayer(steps);
     const application = mockMaximizedTerminalApplication();
@@ -113,6 +113,30 @@ describe('Player Component', () => {
     expect(application.respond).not.toHaveBeenCalled();
     jest.advanceTimersByTime(1);
     expect(application.respond).toHaveBeenCalled();
+  });
+
+  it('should return a promise when playing steps', () => {
+    const steps = [];
+    const player = instantiatePlayer(steps);
+    const promise = player.play();
+    expect(promise.then).toBeDefined();
+  });
+
+  it('should resolve promise when finish to play steps', done => {
+    let resolved;
+    const steps = [
+      {app: 'terminal', action: 'command', params: {}},
+      {app: 'terminal', action: 'respond', params: {}}
+    ];
+    const player = instantiatePlayer(steps);
+    const application = mockMaximizedTerminalApplication();
+    player.desktop.openApplication.mockReturnValue(application);
+    player.play().then(() => {
+      resolved = true;
+      expect(resolved).toEqual(true);
+      done()
+    });
+    jest.runAllTimers();
   });
 
 });
