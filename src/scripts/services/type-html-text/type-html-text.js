@@ -26,7 +26,7 @@ function typeSingleHtmlNode(container, node, onComplete){
   if(domService.isHtmlNodeTypeText(node))
     typePlainText(node.textContent, container, onComplete);
   else
-    typePlainText(node.innerHTML, buildSubContainer(container, node), onComplete);
+    typePlainText(node.textContent, buildSubContainer(container, node), onComplete);
 }
 
 function buildSubContainer(container, node){
