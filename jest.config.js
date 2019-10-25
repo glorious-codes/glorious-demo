@@ -1,6 +1,4 @@
-const fs = require('fs'),
-  argv = require('yargs').argv,
-  project = require('./project.json');
+const project = require('./project.json');
 
 module.exports = {
   "clearMocks": true,
