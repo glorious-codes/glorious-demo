@@ -8,11 +8,8 @@ export class Player {
     this.setCurrentStepNumber(0);
   }
   play(){
-    return new Promise((resolve, reject) => {
-      playSteps(this, this.desktop, this.steps, () => {
-        resolve();
-      });
-    });
+    const { desktop, steps } = this;
+    return new Promise(resolve => playSteps(this, desktop, steps, resolve));
   }
   getCurrentStepNumber(){
     return this.currentStepNumber;

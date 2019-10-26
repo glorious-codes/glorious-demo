@@ -1,5 +1,9 @@
 export const playerInstanceMock = {
-  play: jest.fn()
+  play: jest.fn(() => {
+    return {
+      then: resolve => resolve()
+    };
+  })
 };
 
 export const PlayerMock = jest.fn(() => {
