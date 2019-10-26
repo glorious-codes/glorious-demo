@@ -1,7 +1,9 @@
+import fyzer from '@glorious/fyzer';
 import GDemo from './index';
 import { Player } from './components/player/player';
 import { PlayerMock, playerInstanceMock } from '@mocks/player-mock';
 
+jest.useFakeTimers();
 jest.mock('./components/player/player');
 Player.mockImplementation(PlayerMock);
 
@@ -10,8 +12,16 @@ describe('Glorious Demo class', () => {
     return new GDemo('[data-container]');
   }
 
+  function simulateElementAboveTheFold(){
+    fyzer.subscribe = jest.fn((element, callback) => {
+      setTimeout(callback);
+      return '123';
+    });
+  }
+
   beforeEach(() => {
     spyOn(document, 'querySelector').and.returnValue({});
+    fyzer.unsubscribe = jest.fn();
   });
 
   it('should build its container on instantiate', () => {
@@ -25,8 +35,23 @@ describe('Glorious Demo class', () => {
     expect(gDemo.steps).toEqual([]);
   });
 
+  it('should not play animation if container element is below the page fold', () => {
+    const gDemo = instantiateGDemo();
+    gDemo.openApp('editor',).end();
+    expect(playerInstanceMock.play).not.toHaveBeenCalled();
+  });
+
+  it('should play animation if container element is above the page fold', () => {
+    simulateElementAboveTheFold();
+    const gDemo = instantiateGDemo();
+    gDemo.openApp('editor',).end();
+    jest.runOnlyPendingTimers();
+    expect(playerInstanceMock.play).toHaveBeenCalled();
+    expect(fyzer.unsubscribe).toHaveBeenCalledWith('123');
+  });
 
   it('should play steps', () => {
+    simulateElementAboveTheFold();
     const gDemo = instantiateGDemo();
     gDemo
       .openApp('editor')
@@ -35,6 +60,7 @@ describe('Glorious Demo class', () => {
       .command('node demo.js')
       .respond('hello!')
       .end();
+    jest.runOnlyPendingTimers();
     expect(Player).toHaveBeenCalledWith(gDemo.container, [
       {app: 'editor', options: {}, onCompleteDelay: undefined},
       {app: 'editor', action: 'write', params: {codeSample: 'console.log("hello!");'}, onCompleteDelay: undefined},
@@ -46,6 +72,7 @@ describe('Glorious Demo class', () => {
   });
 
   it('should play steps with options', () => {
+    simulateElementAboveTheFold();
     const gDemo = instantiateGDemo();
     gDemo
       .openApp('editor', {windowTitle: 'atom', onCompleteDelay: 200})
@@ -54,6 +81,7 @@ describe('Glorious Demo class', () => {
       .command('node demo.js', { promptString: '>', onCompleteDelay: 400 })
       .respond('hello!', { onCompleteDelay: 500 })
       .end();
+    jest.runOnlyPendingTimers();
     expect(Player).toHaveBeenCalledWith(gDemo.container, [
       {app: 'editor', options: {windowTitle: 'atom', onCompleteDelay: 200}, onCompleteDelay: 200},
       {app: 'editor', action: 'write', params: {codeSample: 'console.log("hello!");'}, onCompleteDelay: 300},

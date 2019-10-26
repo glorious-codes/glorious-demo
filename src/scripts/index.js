@@ -1,5 +1,6 @@
 import '@styles/_variables.styl';
 import '@styles/_mixins.styl';
+import fyzer from '@glorious/fyzer';
 import { Player } from './components/player/player';
 
 export default class {
@@ -46,7 +47,17 @@ export default class {
     return this;
   }
   end(){
-    const player = new Player(this.container, this.steps);
-    return player.play();
+    return new Promise(resolve => {
+      const { container, steps } = this;
+      awaitContainerAppearsAboveTheFoldToPlay(container, steps, resolve);
+    });
   }
+}
+
+function awaitContainerAppearsAboveTheFoldToPlay(container, steps, resolve){
+  const subscriptionId = fyzer.subscribe(container, () => {
+    const player = new Player(container, steps);
+    fyzer.unsubscribe(subscriptionId);
+    player.play().then(resolve);
+  });
 }
