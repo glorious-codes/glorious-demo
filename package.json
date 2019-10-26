@@ -10,7 +10,7 @@
     "format": "node ./node_modules/eslint/bin/eslint.js ./src/**/*.js",
     "build": "node ./node_modules/webpack/bin/webpack.js",
     "test": "node ./node_modules/jest/bin/jest.js",
-    "prepublishOnly": "rm -rf ./dist && npm run build -- --env=production"
+    "prepublishOnly": "rm -rf ./dist && NODE_ENV=production npm run build"
   },
   "repository": {
     "type": "git",
@@ -52,5 +52,8 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "@glorious/fyzer": "^0.1.0"
   }
 }
