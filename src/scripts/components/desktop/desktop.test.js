@@ -75,7 +75,7 @@ describe('Desktop Component', () => {
     expect(terminal.minimize).toHaveBeenCalled();
   });
 
-  it('should execute complete callback when minimization ends', () => {
+  it('should optionally execute complete callback when minimization ends', () => {
     const onComplete = jest.fn();
     const desktop = instantiateDesktop();
     desktop.minimizeAllApplications(onComplete);
@@ -99,4 +99,13 @@ describe('Desktop Component', () => {
     expect(setTimeout).toHaveBeenCalledWith(onComplete, 750);
   });
 
+  it('should execute complete callback instantly when maximizing inanimate applications', () => {
+    const onComplete = jest.fn();
+    const desktop = instantiateDesktop();
+    spyOn(desktop.element, 'appendChild');
+    const application = desktop.openApplication('editor', { inanimate: true });
+    desktop.maximizeApplication(application, onComplete);
+    expect(onComplete).toHaveBeenCalled();
+    expect(setTimeout).not.toHaveBeenCalled();
+  });
 });

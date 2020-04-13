@@ -15,6 +15,7 @@ export class Application {
       this.setMinHeight(options.minHeight);
     if(options.windowTitle)
       this.setWindowTitle(options.windowTitle);
+    this.configAnimation(options.inanimate);
   }
   setMinHeight(height){
     const applicationTopbarHeight = 26;
@@ -27,17 +28,27 @@ export class Application {
     titleContainerElement.innerText = title;
     this.windowTitle = title;
   }
+  configAnimation(inanimate){
+    this.setInanimate(inanimate);
+    if(inanimate)
+      getBaseApplicationElement(this.element).classList.add('application-inanimate');
+  }
   addContent(content){
     const container = getContentContainerElement(this.element);
     container.appendChild(content);
   }
+  setInanimate(inanimate){
+    this.inanimate = inanimate;
+  }
   minimize(){
     this.setMaximized(false);
-    handleMaximizedCssClass(this.element, 'remove');
+    handleResizingCssClass(this.element, 'remove', 'application-maximized');
+    handleResizingCssClass(this.element, 'add', 'application-minimized');
   }
   maximize(){
     this.setMaximized(true);
-    handleMaximizedCssClass(this.element, 'add');
+    handleResizingCssClass(this.element, 'remove', 'application-minimized');
+    handleResizingCssClass(this.element, 'add', 'application-maximized');
   }
   setMaximized(isMaximized){
     this.isMaximized = isMaximized;
@@ -65,7 +76,10 @@ function getWindowTitleContainerElement(applicationElement){
   return applicationElement.querySelector('[data-title-container]');
 }
 
-function handleMaximizedCssClass(element, classListMethod){
-  const application = element.querySelector('[data-application]');
-  application.classList[classListMethod]('application-maximized');
+function handleResizingCssClass(element, classListMethod, cssClass){
+  getBaseApplicationElement(element).classList[classListMethod](cssClass);
+}
+
+function getBaseApplicationElement(element){
+  return element.querySelector('[data-application]');
 }
