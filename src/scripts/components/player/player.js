@@ -45,12 +45,15 @@ function playStep(desktop, step, onComplete, onCompleteDelay = 0){
 
 function getApplication(desktop, app, options, onGetApplication){
   const application = desktop.openApplication(app, options);
-  if(application.isMaximized)
+  const onMaximizeApplication = () => onGetApplication(application);
+  if(application.isMaximized) {
     onGetApplication(application);
-  else
+  } else if(application.inanimate) {
+    desktop.minimizeAllApplications();
+    desktop.maximizeApplication(application, onMaximizeApplication)
+  } else {
     desktop.minimizeAllApplications(() => {
-      desktop.maximizeApplication(application, () => {
-        onGetApplication(application);
-      });
+      desktop.maximizeApplication(application, onMaximizeApplication);
     });
+  }
 }

@@ -10,9 +10,10 @@
     left 0
     right 0
     opacity 0
-    transform('scale(0)')
-    transition(all, $animation-duration)
-    box-shadow 2px 3px 8px 0 $application-box-shadow-color
+    &:not(.application-inanimate)
+      transform('scale(0)')
+      transition(all, $animation-duration)
+      box-shadow 2px 3px 8px 0 $application-box-shadow-color
     &.application-maximized
       opacity 1
       box-shadow $application-box-shadow-intensity $application-box-shadow-color

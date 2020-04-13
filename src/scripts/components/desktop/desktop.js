@@ -17,11 +17,15 @@ export class Desktop {
   }
   minimizeAllApplications(onComplete){
     this.openApplications.forEach(openApplication => openApplication.minimize());
-    setTimeout(onComplete, getDefaultAnimationDuration());
+    if(onComplete)
+      setTimeout(onComplete, getDefaultAnimationDuration());
   }
   maximizeApplication(application, onComplete){
     application.maximize();
-    setTimeout(onComplete, getDefaultAnimationDuration());
+    if(application.inanimate)
+      onComplete();
+    else
+      setTimeout(onComplete, getDefaultAnimationDuration());
   }
 }
 

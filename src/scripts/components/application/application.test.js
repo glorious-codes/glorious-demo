@@ -60,6 +60,7 @@ describe('Application Component', () => {
     const application = new Application('editor');
     const applicationElement = application.element.querySelector('[data-application]');
     application.maximize();
+    expect(applicationElement.classList.contains('application-minimized')).toEqual(false);
     expect(applicationElement.classList.contains('application-maximized')).toEqual(true);
   });
 
@@ -71,8 +72,15 @@ describe('Application Component', () => {
 
   it('should set minimized look on minimize', () => {
     const application = new Application('editor');
+    const applicationElement = application.element.querySelector('[data-application]');
     application.minimize();
-    expect(application.element.classList.contains('application-maximized')).toEqual(false);
+    expect(applicationElement.classList.contains('application-minimized')).toEqual(true);
+    expect(applicationElement.classList.contains('application-maximized')).toEqual(false);
   });
 
+  it('should optionally set application as inanimate', () => {
+    const application = new Application('editor', { inanimate: true });
+    const applicationElement = application.element.querySelector('[data-application]');
+    expect(applicationElement.classList.contains('application-inanimate')).toEqual(true);
+  });
 });

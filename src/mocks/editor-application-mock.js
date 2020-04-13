@@ -5,6 +5,13 @@ export const editorApplicationInstanceMock = {
   type: 'editor'
 };
 
-export const EditorApplicationMock = jest.fn(() => {
-  return editorApplicationInstanceMock;
+export const EditorApplicationMock = jest.fn((applicationType, { inanimate } = {}) => {
+  const { minimize, maximize, element, type } = editorApplicationInstanceMock;
+  return {
+    minimize,
+    maximize,
+    element,
+    type,
+    inanimate
+  };
 });

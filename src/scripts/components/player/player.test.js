@@ -63,6 +63,17 @@ describe('Player Component', () => {
     expect(typeof player.desktop.maximizeApplication.mock.calls[0][1]).toEqual('function');
   });
 
+  it('should minimize all applications and maximize step application synchronously if step application to be open is inanimate', () => {
+    const steps = [{app: 'editor'}];
+    const player = instantiatePlayer(steps);
+    const application = { inanimate: true };
+    player.desktop.openApplication.mockReturnValue(application);
+    player.play();
+    expect(player.desktop.minimizeAllApplications).toHaveBeenCalled();
+    expect(player.desktop.maximizeApplication.mock.calls[0][0]).toEqual(application);
+    expect(typeof player.desktop.maximizeApplication.mock.calls[0][1]).toEqual('function');
+  });
+
   it('should neither minimize or maximize any application if step application is already maximized when playing some step', () => {
     const steps = [{app: 'editor'}];
     const player = instantiatePlayer(steps);
