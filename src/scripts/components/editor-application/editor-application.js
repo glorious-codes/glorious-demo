@@ -8,13 +8,31 @@ export class EditorApplication extends Application {
     super('editor', options);
     this.container = container;
     this.container.appendChild(this.element);
-    this.lines = [];
+    this.setupInitialContent(options.initialContent);
     this.setWindowTitle(buildWindowTitle(options));
   }
+  setupInitialContent(initialContent = ''){
+    const linesToAppend = parseContent(initialContent);
+    this.setLines([]);
+    this.appendLines(linesToAppend);
+  }
+  setLines(lines){
+    this.lines = [];
+  }
+  appendLines(textLines){
+    textLines.forEach(textLine => {
+      const line = buildEditorLine(this.lines, textLine);
+      appendContentToApplication(this, line);
+    });
+  }
   write({ codeSample }, onComplete){
-    const textLines = textService.removeBlankFirstLine(codeSample);
+    const textLines = parseContent(codeSample);
     writeMultipleLines(this, textLines, onComplete);
   }
+}
+
+function parseContent(content){
+  return textService.removeBlankFirstLine(content);
 }
 
 function buildWindowTitle(options){
@@ -38,10 +56,18 @@ function inactivateLastLineWritten(lines){
     lines[lines.length-1].setInactive();
 }
 
-function writeSingleLine(application, textLine, onComplete){
-  const line = new EditorLine(application.lines.length + 1);
+function writeSingleLine(application, text, onComplete){
+  const line = buildEditorLine(application.lines);
+  appendContentToApplication(application, line);
+  line.setActive();
+  line.write(text, onComplete);
+}
+
+function buildEditorLine(applicationLines, text){
+  return new EditorLine(applicationLines.length + 1, text);
+}
+
+function appendContentToApplication(application, line){
   application.addContent(line.element);
   application.lines.push(line);
-  line.setActive();
-  line.write(textLine, onComplete);
 }

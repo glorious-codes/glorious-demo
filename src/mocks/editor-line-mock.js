@@ -4,7 +4,7 @@ export const editorLineInstanceMock = {
   write: jest.fn((textLine, onComplete) => {
     onComplete();
   }),
-  element: '<div>Something</div>'
+  element: document.createElement('div')
 };
 
 export const EditorLineMock = jest.fn(() => {
