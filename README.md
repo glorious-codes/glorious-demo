@@ -66,6 +66,7 @@ const openAppOptions = {
   minHeight: '350px',
   windowTitle: 'bash',
   promptString: '~/my-project $', // for 'terminal' applications only
+  initialContent: 'Some text', // for 'editor' applications only
   inanimate: true // Turns off application's window animation
   onCompleteDelay: 1000 // Delay before executing the next method
 }

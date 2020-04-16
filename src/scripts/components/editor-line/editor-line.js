@@ -4,11 +4,13 @@ import domService from '../../services/dom/dom';
 import template from './editor-line.html';
 
 export class EditorLine {
-  constructor(lineNumber){
+  constructor(lineNumber, writtenText){
     this.cursor = new Cursor();
     this.element = domService.parseHtml(template);
-    getTextElement(this.element).appendChild(this.cursor.element);
     setNumber(this.element, lineNumber);
+    setupWrittenText(this.element, writtenText);
+    if(!writtenText)
+      getTextElement(this.element).appendChild(this.cursor.element);
   }
   write(text, onComplete){
     this.cursor.write(text, onComplete);
@@ -35,4 +37,8 @@ function getTextElement(lineElement){
 
 function getInnerElement(lineElement, selector){
   return lineElement.querySelector(selector);
+}
+
+function setupWrittenText(lineElement, text = ''){
+  getTextElement(lineElement).innerHTML = text;
 }

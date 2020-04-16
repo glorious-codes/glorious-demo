@@ -22,6 +22,15 @@ describe('Editor Application Component', () => {
     expect(application.element.classList[0]).toEqual('editor-application');
   });
 
+  it('should append lines on instantiate if initial content has been given', () => {
+    const initialContent = `Some text.
+Some more text.`;
+    const application = instantiateEditorApplication({ initialContent });
+    expect(EditorLineMock).toHaveBeenCalledWith(1, 'Some text.');
+    expect(EditorLineMock).toHaveBeenCalledWith(2, 'Some more text.');
+    expect(application.lines.length).toEqual(2);
+  });
+
   it('should config window title with default window title if no window title option is given', () => {
     const application = instantiateEditorApplication();
     expect(application.windowTitle).toEqual('~/demo/demo.js');
@@ -43,14 +52,14 @@ describe('Editor Application Component', () => {
     expect(application.addContent).toHaveBeenCalledWith(editorLineInstanceMock.element);
   });
 
-  it('should instance a editor application line when writing some code', () => {
+  it('should instantiate an editor application line when writing some code', () => {
     const application = instantiateEditorApplication();
     const codeSample = 'Line 1';
     const onComplete = jest.fn();
     application.addContent = jest.fn();
     stubRemoveBlankFirstLine(codeSample.split('\n'));
     application.write({ codeSample }, onComplete);
-    expect(EditorLineMock).toHaveBeenCalledWith(1);
+    expect(EditorLineMock).toHaveBeenCalledWith(1, undefined);
   });
 
   it('should set line as active on write', () => {

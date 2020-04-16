@@ -12,7 +12,7 @@ describe('Editor Line Component', () => {
     spyOn(typeService, 'type');
   });
 
-  it('should build editor line on instantiate', () => {
+  it('should have appropriate css class', () => {
     const line = new EditorLine();
     expect(line.element.classList[0]).toEqual('editor-line');
   });
@@ -27,6 +27,12 @@ describe('Editor Line Component', () => {
     const line = new EditorLine(1);
     const cursorElement = line.element.querySelectorAll('[data-editor-line-text] > span');
     expect(cursorElement.length).toEqual(1);
+  });
+
+  it('should not append a cursor element if line contains some written text on instantiate', () => {
+    const line = new EditorLine(1, 'Some text');
+    const cursorElement = line.element.querySelectorAll('[data-editor-line-text] > span');
+    expect(cursorElement.length).toEqual(0);
   });
 
   it('should write some text using cursor', () => {
