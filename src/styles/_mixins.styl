@@ -29,3 +29,11 @@ transform($property)
   -ms-transform unquote($property)
   -o-transform unquote($property)
   transform unquote($property)
+
+unselectable()
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-user-select:     -moz-none;
+  -khtml-user-select:   none;
+  -webkit-user-select:  none;
+  -o-user-select:       none;
+  user-select:          none;
