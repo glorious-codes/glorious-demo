@@ -54,6 +54,6 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "@glorious/fyzer": "^0.1.0"
+    "@glorious/fyzer": "^0.1.1"
   }
 }
