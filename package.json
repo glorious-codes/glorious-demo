@@ -1,6 +1,6 @@
 {
   "name": "@glorious/demo",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "description": "The easiest way to demonstrate your code in action",
   "main": "dist/gdemo.min.js",
   "files": [
@@ -54,6 +54,6 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "@glorious/fyzer": "^0.1.0"
+    "@glorious/fyzer": "^0.1.1"
   }
 }
