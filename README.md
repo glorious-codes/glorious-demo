@@ -3,6 +3,7 @@
 > The easiest way to demonstrate your code in action.
 
 [![CircleCI](https://circleci.com/gh/glorious-codes/glorious-demo.svg?style=svg)](https://circleci.com/gh/glorious-codes/glorious-demo)
+[![Coverage Status](https://coveralls.io/repos/github/glorious-codes/glorious-demo/badge.svg?branch=master)](https://coveralls.io/github/glorious-codes/glorious-demo?branch=master)
 
 <p align="center">
   <img width="480" src="https://user-images.githubusercontent.com/4738687/49405334-49505c80-f739-11e8-992e-32f4b6e18311.gif" />
