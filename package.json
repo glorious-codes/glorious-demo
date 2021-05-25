@@ -1,6 +1,6 @@
 {
   "name": "@glorious/demo",
-  "version": "0.11.9",
+  "version": "0.11.10",
   "description": "The easiest way to demonstrate your code in action",
   "main": "dist/gdemo.min.js",
   "files": [
