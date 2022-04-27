@@ -37,5 +37,3 @@ jobs:
       - run:
           name: Test
           command: npm run test -- --maxWorkers=2 --coverage --coverageReporters=lcov && ./node_modules/codecov/bin/codecov
-
-      - coveralls/upload
