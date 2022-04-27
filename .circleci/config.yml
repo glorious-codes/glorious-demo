@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/node:10.13.0
+      - image: cimg/node:16.14.2-browsers
 
     steps:
       - checkout
