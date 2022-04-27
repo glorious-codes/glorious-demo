@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/node:10.13.0
+      - image: cimg/node:16.14.2-browsers
 
     steps:
       - checkout
@@ -37,5 +37,3 @@ jobs:
       - run:
           name: Test
           command: npm run test -- --maxWorkers=2 --coverage --coverageReporters=lcov && ./node_modules/codecov/bin/codecov
-
-      - coveralls/upload
