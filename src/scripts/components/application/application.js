@@ -11,11 +11,17 @@ export class Application {
     this.setOptions(this.options);
   }
   setOptions(options){
-    if(options.minHeight)
-      this.setMinHeight(options.minHeight);
-    if(options.windowTitle)
-      this.setWindowTitle(options.windowTitle);
-    this.configAnimation(options.inanimate);
+    Object.entries(options).forEach(([optionName, optionValue]) => {
+      const handle = this.getOptionHandler(optionName)
+      handle && handle(optionValue)
+    });
+  }
+  getOptionHandler(optionName){
+    return {
+      'minHeight': optionValue => this.setMinHeight(optionValue),
+      'windowTitle': optionValue => this.setWindowTitle(optionValue),
+      'inanimate': optionValue => this.configAnimation(optionValue),
+    }[optionName];
   }
   setMinHeight(height){
     const applicationTopbarHeight = 26;
@@ -30,8 +36,7 @@ export class Application {
   }
   configAnimation(inanimate){
     this.setInanimate(inanimate);
-    if(inanimate)
-      getBaseApplicationElement(this.element).classList.add('application-inanimate');
+    if(inanimate) getBaseApplicationElement(this.element).classList.add('application-inanimate');
   }
   addContent(content){
     const container = getContentContainerElement(this.element);
