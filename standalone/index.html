@@ -62,9 +62,9 @@
         .write('Testing Editor 1', { id: 'editor1', onCompleteDelay: 1000 })
         .openApp('editor', { id: 'editor2', minHeight: '300px', windowTitle: 'editor2.txt' })
         .write('Testing Editor 2', { id: 'editor2', onCompleteDelay: 1000 })
-        .openApp('editor', { id: 'editor1', minHeight: '300px', windowTitle: 'editor1.txt' })
+        .openApp('editor', { id: 'editor1' })
         .write('It works!', { id: 'editor1', onCompleteDelay: 1000 })
-        .openApp('editor', { id: 'editor2', minHeight: '300px', windowTitle: 'editor2.txt' })
+        .openApp('editor', { id: 'editor2' })
         .write('Ok, it really works.', { id: 'editor2', onCompleteDelay: 1000 })
         .end();
     }());
