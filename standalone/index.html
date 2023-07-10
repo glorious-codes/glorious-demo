@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../dist/gdemo.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/themes/prism-tomorrow.min.css" integrity="sha512-kSwGoyIkfz4+hMo5jkJngSByil9jxJPKbweYec/UgS+S1EgE45qm4Gea7Ks2oxQ7qiYyyZRn66A9df2lMtjIsw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="../dist/gdemo.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.min.js" integrity="sha512-UOoJElONeUNzQbbKQbjldDf9MwOHqxNz49NNJJ1d90yp+X9edsHyJoAs6O4K19CZGaIdjI5ohK+O2y5lBTW6uQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    main {
+      margin: 50px auto 0;
+      width: 860px;
+    }
+    .example-container {
+      width: 100%;
+    }
+    .example {
+      display: inline-block;
+      width: 400px;
+      height: 400px;
+    }
+    .example:not(:first-of-type) {
+      margin-left: 50px;
+    }
+  </style>
+  <title>Standalone: Glorious Demo</title>
+</head>
+<body>
+  <main>
+    <h1>Examples</h1>
+    <div class="example-container">
+      <h2>Standard</h2>
+      <div class="example" data-example="1"></div>
+    </div>
+    <div class="example-container">
+      <h2>Multiple instances</h2>
+      <div class="example" data-example="2"></div>
+      <div class="example" data-example="3"></div>
+    </div>
+  </main>
+  <script>
+    // Example 1
+    (function(){
+      const gdemo = new GDemo('[data-example="1"]');
+      const code = Prism.highlight('console.log("Hello World!");', Prism.languages.javascript, 'javascript');
+      gdemo
+        .openApp('editor', { minHeight: '300px', windowTitle: 'demo.js' })
+        .write(code, { onCompleteDelay: 2000 })
+        .openApp('terminal', { minHeight: '300px', promptString: '$' })
+        .command('node ./demo')
+        .respond('Hello World!')
+        .command('')
+        .end();
+    }());
+    // Example 2
+    (function(){
+      const gdemo = new GDemo('[data-example="2"]');
+      gdemo
+        .openApp('editor', { id: 'editor1', minHeight: '300px', windowTitle: 'editor1.txt' })
+        .write('Testing Editor 1', { id: 'editor1', onCompleteDelay: 1000 })
+        .openApp('editor', { id: 'editor2', minHeight: '300px', windowTitle: 'editor2.txt' })
+        .write('Testing Editor 2', { id: 'editor2', onCompleteDelay: 1000 })
+        .openApp('editor', { id: 'editor1', minHeight: '300px', windowTitle: 'editor1.txt' })
+        .write('It works!', { id: 'editor1', onCompleteDelay: 1000 })
+        .openApp('editor', { id: 'editor2', minHeight: '300px', windowTitle: 'editor2.txt' })
+        .write('Ok, it really works.', { id: 'editor2', onCompleteDelay: 1000 })
+        .end();
+    }());
+    // Example 3
+    (function(){
+      const gdemo = new GDemo('[data-example="3"]');
+      gdemo
+        .openApp('terminal', { id: 'terminal1', minHeight: '300px', windowTitle: 'bash 1' })
+        .command('node -v', { id: 'terminal1' })
+        .respond('v16.19.0', { id: 'terminal1', onCompleteDelay: 1000 })
+        .openApp('terminal', { id: 'terminal2', minHeight: '300px', windowTitle: 'bash 2' })
+        .command('npm -v', { id: 'terminal2', onCompleteDelay: 300 })
+        .respond('9.6.2', { id: 'terminal2', onCompleteDelay: 1000 })
+        .end();
+    }())
+  </script>
+</body>
+</html>
