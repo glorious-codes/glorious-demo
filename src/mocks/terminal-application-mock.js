@@ -5,6 +5,10 @@ export const terminalApplicationInstanceMock = {
   type: 'terminal'
 };
 
-export const TerminalApplicationMock = jest.fn(() => {
-  return terminalApplicationInstanceMock;
+export const TerminalApplicationMock = jest.fn((containerEl, { inanimate, id } = {}) => {
+  return {
+    ...terminalApplicationInstanceMock,
+    inanimate,
+    id
+  };
 });

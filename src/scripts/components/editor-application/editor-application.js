@@ -52,8 +52,7 @@ function writeMultipleLines(application, textLines, onComplete){
 }
 
 function inactivateLastLineWritten(lines){
-  if(lines.length)
-    lines[lines.length-1].setInactive();
+  if(lines.length) lines[lines.length-1].setInactive();
 }
 
 function writeSingleLine(application, text, onComplete){

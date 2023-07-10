@@ -65,9 +65,10 @@ const applicationType = 'terminal';
 const openAppOptions = {
   minHeight: '350px',
   windowTitle: 'bash',
-  promptString: '~/my-project $', // for 'terminal' applications only
-  initialContent: 'Some text', // for 'editor' applications only
+  id: 'someId', // Identifies an application, in case of multiple instances
   inanimate: true, // Turns off application's window animation
+  promptString: '~/my-project $', // For 'terminal' applications only
+  initialContent: 'Some text', // For 'editor' applications only
   onCompleteDelay: 1000 // Delay before executing the next method
 }
 
@@ -92,6 +93,7 @@ sum();
 `;
 
 const writeOptions = {
+  id: 'someId', // Identifies an application, in case of multiple instances
   onCompleteDelay: 500 // Delay before executing the next method
 }
 
@@ -115,7 +117,8 @@ const promptString = '$'
 const promptString = '<span class="my-custom-class">$</span>'
 
 const commandOptions = {
-  promptString,
+  id: 'someId', // Identifies an application, in case of multiple instances
+  promptString, // Sets a custom string. Default: ~/demo $
   onCompleteDelay: 500 // Delay before executing the next method
 }
 
@@ -143,6 +146,7 @@ const response = `
 `;
 
 const respondOptions = {
+  id: 'someId', // Identifies an application, in case of multiple instances
   onCompleteDelay: 500 // Delay before executing the next method
 }
 

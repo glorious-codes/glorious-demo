@@ -52,9 +52,18 @@ describe('Desktop Component', () => {
     spyOn(desktop.element, 'appendChild');
     desktop.openApplication('editor');
     desktop.openApplication('terminal');
-    EditorApplication.mockClear();
     desktop.openApplication('editor');
-    expect(EditorApplication).not.toHaveBeenCalled();
+    expect(EditorApplication).not.toHaveBeenCalledTimes(1);
+  });
+
+  it('should optionally instantiate an application more than once', () => {
+    const desktop = instantiateDesktop();
+    spyOn(desktop.element, 'appendChild');
+    desktop.openApplication('editor', { id: 'editor1' });
+    desktop.openApplication('editor', { id: 'editor2' });
+    desktop.openApplication('editor', { id: 'editor1' });
+    desktop.openApplication('editor', { id: 'editor2' });
+    expect(EditorApplication).toHaveBeenCalledTimes(2);
   });
 
   it('should append the application element to the desktop when opening it', () => {

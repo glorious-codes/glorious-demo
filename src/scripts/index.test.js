@@ -63,10 +63,10 @@ describe('Glorious Demo class', () => {
     jest.runOnlyPendingTimers();
     expect(Player).toHaveBeenCalledWith(gDemo.container, [
       {app: 'editor', options: {}, onCompleteDelay: undefined},
-      {app: 'editor', action: 'write', params: {codeSample: 'console.log("hello!");'}, onCompleteDelay: undefined},
+      {app: 'editor', action: 'write', params: {codeSample: 'console.log("hello!");'}, options: {}, onCompleteDelay: undefined},
       {app: 'terminal', options: {}, onCompleteDelay: undefined},
-      {app: 'terminal', action: 'command', params: {command: 'node demo.js'}, onCompleteDelay: undefined},
-      {app: 'terminal', action: 'respond', params: {response: 'hello!'}, onCompleteDelay: undefined}
+      {app: 'terminal', action: 'command', params: {command: 'node demo.js', promptString: undefined}, options: {}, onCompleteDelay: undefined},
+      {app: 'terminal', action: 'respond', params: {response: 'hello!'}, options: {}, onCompleteDelay: undefined}
     ]);
     expect(playerInstanceMock.play).toHaveBeenCalled();
   });
@@ -75,19 +75,19 @@ describe('Glorious Demo class', () => {
     simulateElementAboveTheFold();
     const gDemo = instantiateGDemo();
     gDemo
-      .openApp('editor', {windowTitle: 'atom', onCompleteDelay: 200})
-      .write('console.log("hello!");', { onCompleteDelay: 300 })
-      .openApp('terminal', {windowTitle: 'bash'})
-      .command('node demo.js', { promptString: '>', onCompleteDelay: 400 })
-      .respond('hello!', { onCompleteDelay: 500 })
+      .openApp('editor', {id: 'editor1', windowTitle: 'atom', onCompleteDelay: 200})
+      .write('console.log("hello!");', {id: 'editor1', onCompleteDelay: 300})
+      .openApp('terminal', {id: 'terminal1', windowTitle: 'bash'})
+      .command('node demo.js', {id: 'terminal1', promptString: '>', onCompleteDelay: 400})
+      .respond('hello!', {id: 'terminal1', onCompleteDelay: 500})
       .end();
     jest.runOnlyPendingTimers();
     expect(Player).toHaveBeenCalledWith(gDemo.container, [
-      {app: 'editor', options: {windowTitle: 'atom', onCompleteDelay: 200}, onCompleteDelay: 200},
-      {app: 'editor', action: 'write', params: {codeSample: 'console.log("hello!");'}, onCompleteDelay: 300},
-      {app: 'terminal', options: {windowTitle: 'bash'}, onCompleteDelay: undefined},
-      {app: 'terminal', action: 'command', params: {command: 'node demo.js', promptString: '>'}, onCompleteDelay: 400},
-      {app: 'terminal', action: 'respond', params: {response: 'hello!'}, onCompleteDelay: 500}
+      {app: 'editor', options: {id: 'editor1', windowTitle: 'atom', onCompleteDelay: 200}, onCompleteDelay: 200},
+      {app: 'editor', action: 'write', params: {codeSample: 'console.log("hello!");'}, options: {id: 'editor1'}, onCompleteDelay: 300},
+      {app: 'terminal', options: {id: 'terminal1', windowTitle: 'bash'}, onCompleteDelay: undefined },
+      {app: 'terminal', action: 'command', params: {command: 'node demo.js', promptString: '>'}, options: {id: 'terminal1'}, onCompleteDelay: 400},
+      {app: 'terminal', action: 'respond', params: {response: 'hello!'}, options: {id: 'terminal1'}, onCompleteDelay: 500}
     ]);
     expect(playerInstanceMock.play).toHaveBeenCalled();
   });

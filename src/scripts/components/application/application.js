@@ -1,11 +1,13 @@
 import '@styles/application.styl';
+import { DEFAULT_APPLICATION_ID } from '../../constants/application';
 import domService from '../../services/dom/dom';
 import textService from '../../services/text/text';
 import template from './application.html';
 
 export class Application {
-  constructor(applicationType, options = {}){
+  constructor(applicationType, { id = DEFAULT_APPLICATION_ID, ...options } = {}){
     this.type = applicationType;
+    this.id = id;
     this.options = options;
     this.element = buildElement(applicationType);
     this.setOptions(this.options);
@@ -36,7 +38,7 @@ export class Application {
   }
   configAnimation(inanimate){
     this.setInanimate(inanimate);
-    if(inanimate) getBaseApplicationElement(this.element).classList.add('application-inanimate');
+    inanimate && getBaseApplicationElement(this.element).classList.add('application-inanimate');
   }
   addContent(content){
     const container = getContentContainerElement(this.element);
