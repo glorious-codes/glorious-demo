@@ -34,12 +34,9 @@ function playSteps(player, desktop, steps, onComplete){
 
 function playStep(desktop, step, onComplete, onCompleteDelay = 0){
   getApplication(desktop, step.app, step.options, application => {
-    if(step.action)
-      application[step.action](step.params, () => {
-        setTimeout(onComplete, onCompleteDelay);
-      });
-    else
-      setTimeout(onComplete, onCompleteDelay);
+    const callback = () => setTimeout(onComplete, onCompleteDelay);
+    if(step.action) return application[step.action](step.params, callback);
+    return callback();
   });
 }
 

@@ -16,33 +16,36 @@ export default class {
     });
     return this;
   }
-  write(codeSample, options = {}){
+  write(codeSample, { onCompleteDelay, ...options } = {}){
     this.steps.push({
       app: 'editor',
       action: 'write',
       params: { codeSample },
-      onCompleteDelay: options.onCompleteDelay
+      onCompleteDelay,
+      options
     });
     return this;
   }
-  command(command, options = {}){
+  command(command, { onCompleteDelay, promptString, ...options } = {}){
     this.steps.push({
       app: 'terminal',
       action: 'command',
       params: {
         command,
-        promptString: options.promptString
+        promptString
       },
-      onCompleteDelay: options.onCompleteDelay
+      onCompleteDelay,
+      options
     });
     return this;
   }
-  respond(response, options = {}){
+  respond(response, { onCompleteDelay, ...options } = {}){
     this.steps.push({
       app: 'terminal',
       action: 'respond',
       params: { response },
-      onCompleteDelay: options.onCompleteDelay
+      onCompleteDelay,
+      options
     });
     return this;
   }

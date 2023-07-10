@@ -4,6 +4,17 @@ jest.useFakeTimers();
 
 describe('Application Component', () => {
 
+  it('should have a default id', () => {
+    const application = new Application('editor');
+    expect(application.id).toEqual('_default');
+  });
+
+  it('should optionally have a custom id', () => {
+    const id = 'editor3';
+    const application = new Application('editor', { id });
+    expect(application.id).toEqual(id);
+  });
+
   it('should instantiate application from application type', () => {
     const application = new Application('editor');
     expect(application.element.classList.length).toEqual(1);

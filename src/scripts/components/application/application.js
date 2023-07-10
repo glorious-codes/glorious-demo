@@ -1,21 +1,29 @@
 import '@styles/application.styl';
+import { DEFAULT_APPLICATION_ID } from '../../constants/application';
 import domService from '../../services/dom/dom';
 import textService from '../../services/text/text';
 import template from './application.html';
 
 export class Application {
-  constructor(applicationType, options = {}){
+  constructor(applicationType, { id = DEFAULT_APPLICATION_ID, ...options } = {}){
     this.type = applicationType;
+    this.id = id;
     this.options = options;
     this.element = buildElement(applicationType);
     this.setOptions(this.options);
   }
   setOptions(options){
-    if(options.minHeight)
-      this.setMinHeight(options.minHeight);
-    if(options.windowTitle)
-      this.setWindowTitle(options.windowTitle);
-    this.configAnimation(options.inanimate);
+    Object.entries(options).forEach(([optionName, optionValue]) => {
+      const handle = this.getOptionHandler(optionName)
+      handle && handle(optionValue)
+    });
+  }
+  getOptionHandler(optionName){
+    return {
+      'minHeight': optionValue => this.setMinHeight(optionValue),
+      'windowTitle': optionValue => this.setWindowTitle(optionValue),
+      'inanimate': optionValue => this.configAnimation(optionValue),
+    }[optionName];
   }
   setMinHeight(height){
     const applicationTopbarHeight = 26;
@@ -30,8 +38,7 @@ export class Application {
   }
   configAnimation(inanimate){
     this.setInanimate(inanimate);
-    if(inanimate)
-      getBaseApplicationElement(this.element).classList.add('application-inanimate');
+    inanimate && getBaseApplicationElement(this.element).classList.add('application-inanimate');
   }
   addContent(content){
     const container = getContentContainerElement(this.element);

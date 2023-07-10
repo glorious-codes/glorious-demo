@@ -1,4 +1,5 @@
 import '@styles/desktop.styl';
+import { DEFAULT_APPLICATION_ID } from '../../constants/application';
 import { EditorApplication } from '../editor-application/editor-application';
 import { TerminalApplication } from '../terminal-application/terminal-application';
 import domService from '../../services/dom/dom';
@@ -12,20 +13,17 @@ export class Desktop {
     this.container.appendChild(this.element);
   }
   openApplication(appType, appOptions){
-    const app = getOpenApplication(this.openApplications, appType);
+    const app = getOpenApplication(this.openApplications, appType, appOptions);
     return app ? app : buildApplication(this, appType, appOptions);
   }
   minimizeAllApplications(onComplete){
     this.openApplications.forEach(openApplication => openApplication.minimize());
-    if(onComplete)
-      setTimeout(onComplete, getDefaultAnimationDuration());
+    if(onComplete) setTimeout(onComplete, getDefaultAnimationDuration());
   }
   maximizeApplication(application, onComplete){
     application.maximize();
-    if(application.inanimate)
-      onComplete();
-    else
-      setTimeout(onComplete, getDefaultAnimationDuration());
+    if(application.inanimate) return onComplete();
+    return setTimeout(onComplete, getDefaultAnimationDuration());
   }
 }
 
@@ -37,9 +35,12 @@ function buildApplication(desktop, appType, options){
   return application;
 }
 
-function getOpenApplication(openApplications, appType){
-  return openApplications.find(openApplication => {
+function getOpenApplication(openApplications, appType, appOptions = {}){
+  const appId = appOptions.id || DEFAULT_APPLICATION_ID;
+  return openApplications.filter(openApplication => {
     return openApplication.type === appType;
+  }).find(openApplication => {
+    return openApplication.id === appId;
   });
 }
 
